@@ -88,7 +88,7 @@
     [/advertising|paid media|google ads|meta ads|ppc/i, "Performance marketing covers Google, Meta, LinkedIn, display, and video, connecting targeting, creative testing, landing pages, attribution, and optimization against CAC, ROAS, pipeline, and revenue."],
     [/price|pricing|cost|budget|how much/i, "Engagements typically range from INR 2 lakh to INR 50 lakh or more per month depending on scope, channels, production, technology, and media. Complete the detailed profile under “Get a plan” for an appropriate recommendation."],
     [/service|what do you do|help/i, `Prime Polo can provide: ${SERVICES.join(", ")}. Choose “Get a plan” to select every service you are interested in.`],
-    [/contact|email|meeting|proposal/i, "Email primepolomarketing@gmail.com or complete the “Get a plan” profile. The structured profile helps the team prepare a relevant response before contacting you."],
+    [/contact|email|meeting|proposal/i, "Email primepolomarketing@gmail.com, call or WhatsApp +91 7903946440, or complete the “Get a plan” profile. The structured profile helps the team prepare a relevant response before contacting you."],
   ];
 
   function fallback(message) {

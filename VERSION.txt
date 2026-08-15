@@ -1,38 +1,23 @@
-Prime Polo recovery build: 9.1-expanded-services-navigation
+Prime Polo recovery build: 9.2-functional-navigation-phone
 
-Navigation now follows the requested reference structure:
-- Influencer
-- About Us
-- News & Awards
-- Services
-- Clients
-- Industry
-- International
+Every primary navigation option now has a working internal destination:
+- Influencer -> dedicated Influencer Marketing section
+- About Us -> company story and team
+- News & Awards -> transparent news, milestones and recognition section
+- Services -> expanded service catalog
+- Clients -> featured work and case studies
+- Industry -> industry expertise
+- International -> dedicated international growth and remote-delivery section
 
-Expanded service catalog:
-- Creative & Communication
-- Search Engine Marketing (SEO, AEO & GEO)
-- Full-Funnel Digital Marketing
-- Website & Web App Development
-- Mobile Application Development
-- Ad Management
-- UGC Content Creation
-- Social Media Marketing
-- Influencer Marketing
-- Online Reputation Management
-- Content Marketing & Video Production
-- Branding & Design
-- Performance Marketing
-- Lead Generation
-- Marketing Automation & CRM
-- Analytics, Attribution & Reporting
+New generated content:
+- Influencer strategy, UGC, operations and measurement
+- 2026 company news and milestones
+- Honest recognition desk with no fabricated awards
+- Market entry, international SEO/AEO/GEO, cross-border media and remote delivery
 
-Business updates:
-- Formed in 2026
-- Founder: Saurya Kumar
-- Professional experience: 5+ years
-- Location: Vikas Nagar, Bihta, Bihar 801103
-- Email: primepolomarketing@gmail.com
+Phone connectivity:
+- Click-to-call: +91 7903946440
+- WhatsApp: +91 7903946440 with a prefilled enquiry message
+- Links are available in the header, contact section and responsive phone dock
 
-The expanded services are synchronized across the website, chatbot knowledge,
-lead-intake form and mandatory dashboard work-profile form.
+All Version 9.1 visual, service, AI, lead, authentication and dashboard functionality remains included.
