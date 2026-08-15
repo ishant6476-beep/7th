@@ -85,10 +85,11 @@ export default async function handler(req, res) {
   if (!services.length) return res.status(400).json({ error: "Select at least one valid service." });
 
   const supabaseUrl = clean(process.env.SUPABASE_URL, 500).replace(/\/$/, "");
-  const serviceKey = clean(process.env.SUPABASE_SERVICE_ROLE_KEY, 5000);
+  // Prefer Supabase's current sb_secret_ key. Legacy service_role JWTs remain supported.
+  const serviceKey = clean(process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY, 5000);
   if (!supabaseUrl || !serviceKey) {
-    console.error("Intake storage is not configured: SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY missing");
-    return res.status(503).json({ error: "Profile storage is temporarily unavailable. Please email info@primepolomarketing.in." });
+    console.error("Intake storage is not configured: SUPABASE_URL or a server secret key is missing");
+    return res.status(503).json({ error: "Profile storage is not configured. Add the Supabase server variables in Vercel, then redeploy." });
   }
 
   const id = randomUUID();
@@ -108,20 +109,28 @@ export default async function handler(req, res) {
   };
 
   try {
+    const headers = {
+      "Content-Type": "application/json",
+      apikey: serviceKey,
+      Prefer: "return=minimal",
+    };
+    // New sb_secret_ keys are opaque, not JWTs, and must NOT be sent as
+    // Authorization: Bearer. Legacy service_role JWTs require that header.
+    if (!serviceKey.startsWith("sb_secret_")) headers.Authorization = `Bearer ${serviceKey}`;
+
     const response = await fetch(`${supabaseUrl}/rest/v1/marketing_intakes`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        apikey: serviceKey,
-        Authorization: `Bearer ${serviceKey}`,
-        Prefer: "return=minimal",
-      },
+      headers,
       body: JSON.stringify(record),
     });
     if (!response.ok) {
       const errorText = await response.text();
       console.error("Supabase intake insert failed", response.status, errorText.slice(0, 1000));
-      return res.status(502).json({ error: "We could not save your profile right now. Please try again or email info@primepolomarketing.in." });
+      const tableMissing = response.status === 404 || /marketing_intakes|PGRST205|schema cache/i.test(errorText);
+      const keyRejected = response.status === 401 || response.status === 403 || /invalid.*(jwt|key)|unauthorized/i.test(errorText);
+      if (tableMissing) return res.status(503).json({ error: "The intake database table is missing. Run supabase/marketing_intakes.sql in Supabase SQL Editor." });
+      if (keyRejected) return res.status(503).json({ error: "Supabase rejected the server key. Add SUPABASE_SECRET_KEY in Vercel using the sb_secret_ key, then redeploy." });
+      return res.status(502).json({ error: "The database rejected this submission. Check the Vercel Function log for api/intake." });
     }
     return res.status(201).json({ reference: `PP-${id.slice(0, 8).toUpperCase()}` });
   } catch (error) {

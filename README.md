@@ -55,13 +55,15 @@ It requires both email and phone/WhatsApp, records occupation/business details, 
 
 ```env
 SUPABASE_URL=https://YOUR_PROJECT.supabase.co
-SUPABASE_SERVICE_ROLE_KEY=your_server_only_service_role_key
+SUPABASE_SECRET_KEY=sb_secret_your_server_key
 ```
+
+Use the current **Secret key** from Supabase → Project Settings → API Keys. Legacy projects can instead set `SUPABASE_SERVICE_ROLE_KEY` to the old JWT service-role key.
 
 4. Apply the variables to Production, Preview, and Development.
 5. Redeploy.
 
-The service-role key must be named exactly `SUPABASE_SERVICE_ROLE_KEY`. Never expose it through a `VITE_` variable or place it in browser code. The `marketing_intakes` table has Row Level Security enabled and is not accessible to anonymous browser clients; only the server endpoint inserts profiles.
+Never expose either server key through a `VITE_` variable or place it in browser code. The `marketing_intakes` table has Row Level Security enabled and is not accessible to anonymous browser clients; only the server endpoint inserts profiles.
 
 Saved submissions are available in **Supabase → Table Editor → marketing_intakes**. Common columns are searchable directly, and occupation details are stored in the `details` JSON column.
 

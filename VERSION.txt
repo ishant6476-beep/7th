@@ -1,15 +1,15 @@
-Prime Polo recovery build: 6.0-segmented-intake
+Prime Polo recovery build: 6.1-intake-storage-fix
 
-This version:
-- Adds Influencer, Company and Agency profile options
-- Collects required email and phone/WhatsApp details
-- Uses role-specific occupation and business questionnaires
-- Lists the complete Prime Polo service catalog for multi-selection
-- Saves validated submissions to a private Supabase marketing_intakes table
-- Includes consent, anti-spam protection and endpoint rate limiting
-- Keeps Groq AI, Gemini fallback and the built-in knowledge base
+Fixes:
+- Supports current Supabase sb_secret_ server keys correctly
+- Does not send opaque sb_secret_ keys as Bearer JWTs
+- Still supports legacy service_role JWT keys
+- Returns clear errors for missing table, rejected key or missing configuration
+- Includes Influencer, Company and Agency intake profiles
+- Saves full occupation details and selected services
 
 Required setup:
 1. Run supabase/marketing_intakes.sql in Supabase SQL Editor
-2. Add SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in Vercel
-3. Redeploy
+2. Add SUPABASE_URL and SUPABASE_SECRET_KEY in Vercel
+3. Disable Vercel Deployment Protection for preview testing, or use the production domain
+4. Redeploy
