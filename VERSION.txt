@@ -1,0 +1,13 @@
+Prime Polo recovery build: 4.0-trained-chatbot
+
+This version:
+- Uses a standalone chatbot outside the React root
+- Includes a detailed Prime Polo knowledge base with topic-specific answers
+- Uses info@primepolomarketing.in throughout
+- Works in knowledge-base mode even if GEMINI_API_KEY is not configured
+- Uses Gemini for flexible conversational answers when the key is configured
+
+Expected deployed files:
+- /chatbot.js
+- /chatbot.css
+- /api/chat

@@ -1,0 +1,17 @@
+{
+  "name": "prime-polo-fixed",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "node scripts/build.mjs",
+    "preview": "npx serve dist"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "vercel": "^46.1.1"
+  }
+}

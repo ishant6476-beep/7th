@@ -1,0 +1,112 @@
+/* Standalone chatbot. It intentionally avoids transforms, backdrop-filter,
+   React and animation to prevent mobile Safari/embedded-browser blank screens. */
+.chatbot { display: none !important; }
+.ppai-host {
+  position: fixed;
+  z-index: 1000;
+  right: 24px;
+  bottom: 24px;
+  font-family: Inter, Arial, sans-serif;
+  color: var(--text-primary, #f7f3ff);
+}
+.ppai-host *, .ppai-host *::before, .ppai-host *::after { box-sizing: border-box; }
+.ppai-host [hidden] { display: none !important; }
+.ppai-toggle {
+  width: 58px;
+  height: 58px;
+  border: 1px solid #d6a928;
+  border-radius: 50%;
+  background: #7428d8;
+  box-shadow: 0 12px 34px rgba(67, 24, 120, .35);
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+}
+.ppai-panel {
+  width: 360px;
+  height: min(540px, calc(100vh - 48px));
+  border: 1px solid var(--border-card, rgba(255,255,255,.14));
+  background: var(--bg-card, #0e0a18);
+  box-shadow: 0 24px 60px rgba(0,0,0,.4);
+  overflow: hidden;
+}
+.ppai-header {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--border-card, rgba(255,255,255,.12));
+  background: var(--bg-elevated, #151022);
+}
+.ppai-identity strong { display: block; font-size: 14px; letter-spacing: .04em; text-transform: uppercase; }
+.ppai-identity small { display: block; margin-top: 5px; color: #34d399; font-size: 9px; }
+.ppai-close {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border-card, rgba(255,255,255,.12));
+  background: transparent;
+  color: var(--text-primary, #fff);
+  font-size: 25px;
+  line-height: 1;
+  cursor: pointer;
+}
+.ppai-messages {
+  height: calc(100% - 128px);
+  padding: 16px 14px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--bg-card, #0e0a18);
+}
+.ppai-message { display: flex; margin: 9px 0; }
+.ppai-message p {
+  max-width: 84%;
+  margin: 0;
+  padding: 11px 12px;
+  border: 1px solid var(--border-card, rgba(255,255,255,.12));
+  background: var(--input-bg, rgba(255,255,255,.04));
+  color: var(--text-secondary, #aab0bd);
+  font-size: 12px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.ppai-user { justify-content: flex-end; }
+.ppai-user p { border-color: rgba(139,61,255,.35); background: rgba(139,61,255,.18); color: var(--text-primary, #fff); }
+.ppai-form {
+  height: 58px;
+  display: flex;
+  gap: 8px;
+  padding: 9px 10px;
+  border-top: 1px solid var(--border-card, rgba(255,255,255,.12));
+  background: var(--bg-elevated, #151022);
+}
+.ppai-input {
+  min-width: 0;
+  flex: 1;
+  border: 1px solid var(--border-card, rgba(255,255,255,.12));
+  border-radius: 0;
+  outline: none;
+  padding: 0 11px;
+  background: var(--input-bg, rgba(255,255,255,.04));
+  color: var(--text-primary, #fff);
+  font-size: 12px;
+}
+.ppai-input:focus { border-color: #8b3dff; }
+.ppai-send {
+  width: 62px;
+  border: 0;
+  background: #7a1fff;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.ppai-send:disabled { opacity: .65; cursor: wait; }
+
+@media (max-width: 600px) {
+  .ppai-host { left: 10px; right: 10px; bottom: 76px; }
+  .ppai-toggle { margin-left: auto; display: block; width: 50px; height: 50px; }
+  .ppai-panel { width: 100%; height: calc(100dvh - 96px); max-height: 620px; }
+}
