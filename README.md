@@ -1,6 +1,19 @@
-# Prime Polo — Recovered Site + Rebuilt AI Chatbot
+# Prime Polo — Performance Agency Redesign
 
-This is a deployable recovery of the Prime Polo website. The unavailable original source is preserved as a self-contained snapshot in `src/site.html`. The current chatbot is plain JavaScript mounted outside React, with a secure Vercel API route.
+This is a deployable recovery and full visual redesign of the Prime Polo website. The unavailable original source is preserved as a self-contained snapshot in `src/site.html`. The interface now uses an original black, cream and yellow performance-agency design inspired by contemporary Indian agency websites, while preserving Prime Polo branding, both themes, the theme toggle, authentication, dashboard, chatbot and Supabase workflows.
+
+## Version 9 visual system
+
+- Bold editorial typography, yellow calls to action, black performance panels and structured service cards
+- Three original generated 3D visuals for the hero, integrated services and strategy sections
+- Responsive desktop and mobile layouts
+- Real Google Maps embed with an external **Open in Google Maps** action
+- White presentation tiles automatically applied to displayed company/partner/client logos
+- Dark and light themes remain available through the existing theme button
+- Founder corrected to **Saurya Kumar**
+- Professional experience updated to **5+ years**
+- Business location updated to **Vikas Nagar, Bihta, Bihar 801103**
+- Primary contact email updated to **primepolomarketing@gmail.com**
 
 ## Data flow
 

@@ -1,16 +1,22 @@
-Prime Polo recovery build: 8.1-mandatory-profile-gate
+Prime Polo recovery build: 9.0-performance-agency-redesign
 
-Mandatory dashboard gate:
-- Authenticated users cannot see or interact with the dashboard until a complete work profile is saved.
-- The setup modal cannot be closed or skipped for first-time users.
-- Users must select Company, Influencer or Other.
-- Required contact and profession fields are validated by both browser and server.
-- Influencers must select a platform; all users must select at least one service.
-- Only server-confirmed profiles with completed_at unlock the dashboard.
-- If profile storage is misconfigured, access stays locked and a setup error with Retry is shown.
-- After successful save, the dashboard unlocks automatically.
+Full UI redesign:
+- Original black, cream and yellow performance-agency visual system
+- Existing dark/light themes and theme toggle preserved
+- Bold editorial hero and service-card layouts
+- Responsive desktop and mobile styling
+- Generated 3D hero, services and strategy imagery
+- Real Google Maps embed plus Open in Google Maps action
+- White presentation backgrounds for every displayed logo
 
-Required setup:
-1. Run supabase/user_work_profiles.sql in Supabase SQL Editor.
-2. Configure SUPABASE_URL and SUPABASE_SECRET_KEY in Vercel.
-3. Redeploy.
+Business updates:
+- Founder: Saurya Kumar
+- Professional experience: 5+ years
+- Location: Vikas Nagar, Bihta, Bihar 801103
+- Email: primepolomarketing@gmail.com
+
+All previous functionality remains:
+- Groq/Gemini chatbot
+- Supabase-only leads
+- Mandatory Company/Influencer/Other dashboard profile gate
+- Authentication and staff dashboard
