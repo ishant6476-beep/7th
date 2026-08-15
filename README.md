@@ -39,6 +39,32 @@ GEMINI_API_KEY=your_google_ai_studio_key
 GEMINI_MODEL=gemini-3.5-flash
 ```
 
+## Configure profile storage
+
+The **Get a plan** tab collects structured profiles for three visitor types:
+
+- Influencer
+- Company
+- Agency
+
+It requires both email and phone/WhatsApp, records occupation/business details, allows selection from the complete service catalog, and saves everything to Supabase.
+
+1. Open **Supabase → SQL Editor**.
+2. Run `supabase/marketing_intakes.sql` once.
+3. In **Vercel → Settings → Environment Variables**, add:
+
+```env
+SUPABASE_URL=https://YOUR_PROJECT.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=your_server_only_service_role_key
+```
+
+4. Apply the variables to Production, Preview, and Development.
+5. Redeploy.
+
+The service-role key must be named exactly `SUPABASE_SERVICE_ROLE_KEY`. Never expose it through a `VITE_` variable or place it in browser code. The `marketing_intakes` table has Row Level Security enabled and is not accessible to anonymous browser clients; only the server endpoint inserts profiles.
+
+Saved submissions are available in **Supabase → Table Editor → marketing_intakes**. Common columns are searchable directly, and occupation details are stored in the `details` JSON column.
+
 ## Deploy
 
 ```bash
@@ -63,6 +89,8 @@ npm run dev
 - `public/chatbot.js` — standalone chatbot interface
 - `public/chatbot.css` — isolated chatbot styles
 - `api/chat.js` — Groq/Gemini/knowledge-base server endpoint
+- `api/intake.js` — validated server endpoint for saving visitor profiles
+- `supabase/marketing_intakes.sql` — private intake table and indexes
 - `public/images/` — website images
 - `scripts/build.mjs` — production build
 - `.env.example` — environment template

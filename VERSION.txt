@@ -1,15 +1,15 @@
-Prime Polo recovery build: 5.0-groq-ai
+Prime Polo recovery build: 6.0-segmented-intake
 
 This version:
-- Uses GroqCloud Llama 3.3 70B as the primary AI provider
-- Supports Gemini as an optional secondary provider
-- Requests fuller 70-150 word answers with up to 500 completion tokens
-- Automatically expands unusually short substantive AI answers
-- Includes a detailed offline Prime Polo knowledge base
-- Uses info@primepolomarketing.in throughout
-- Keeps all API keys server-side
+- Adds Influencer, Company and Agency profile options
+- Collects required email and phone/WhatsApp details
+- Uses role-specific occupation and business questionnaires
+- Lists the complete Prime Polo service catalog for multi-selection
+- Saves validated submissions to a private Supabase marketing_intakes table
+- Includes consent, anti-spam protection and endpoint rate limiting
+- Keeps Groq AI, Gemini fallback and the built-in knowledge base
 
-Expected deployed files:
-- /chatbot.js
-- /chatbot.css
-- /api/chat
+Required setup:
+1. Run supabase/marketing_intakes.sql in Supabase SQL Editor
+2. Add SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in Vercel
+3. Redeploy

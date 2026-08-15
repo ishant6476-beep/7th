@@ -1,169 +1,188 @@
 (() => {
   "use strict";
 
-  const KNOWLEDGE = [
-    {
-      match: /^(hi|hello|hey|good morning|good afternoon|good evening|namaste)\b/i,
-      answer: "Hello! I’m Prime Intelligence. I can help with services, pricing, timelines, industries, case studies, or arranging a growth consultation. What would you like to know?",
-    },
-    {
-      match: /who are you|what are you|are you (a )?(bot|human|ai)/i,
-      answer: "I’m Prime Intelligence, Prime Polo’s website assistant. I can explain our growth, advertising, SEO, automation, branding, content, and web services, and help you choose the right next step.",
-    },
-    {
-      match: /founder|ceo|shaurya|who (started|founded|runs|owns)/i,
-      answer: "Prime Polo was founded in 2018 by Shaurya Kumar, Founder & CEO. The agency works with senior specialists across strategy, creative, technology, media, and growth.",
-    },
-    {
-      match: /all services|^(what services|which services|services do you|what do you do|how can you help|capabilities)/i,
-      answer: "Prime Polo offers growth strategy, paid media, SEO, social media, influencer marketing, marketing automation, brand strategy and identity, content and video production, conversion-focused websites, CRO, analytics, and lead generation. Tell me your goal and I’ll suggest the most relevant service.",
-    },
-    {
-      match: /seo|search engine|organic (traffic|growth|ranking)|rank on google|keywords?/i,
-      answer: "Our SEO work combines technical audits, keyword and competitor research, site architecture, on-page optimization, content strategy, authority building, and performance reporting. We tailor the plan to your market and current search visibility.",
-    },
-    {
-      match: /google ads|meta ads|facebook ads|instagram ads|paid media|ppc|performance marketing|advertising/i,
-      answer: "Our performance marketing covers Google, Meta, LinkedIn, display, and video. We manage strategy, targeting, creative testing, landing pages, conversion tracking, attribution, and ongoing optimization against CAC, ROAS, and pipeline—not vanity metrics.",
-    },
-    {
-      match: /social media|instagram|linkedin|facebook|social strategy/i,
-      answer: "We build always-on social systems covering channel strategy, content pillars, calendars, creative production, community engagement, and performance reporting. The goal is to turn attention into qualified demand and measurable growth.",
-    },
-    {
-      match: /influencer|creator|influencers/i,
-      answer: "Our influencer marketing service covers creator discovery, audience and brand-fit checks, outreach, negotiation, campaign concepts, content approvals, tracking, and performance analysis. Programs are designed for both cultural reach and attributable results.",
-    },
-    {
-      match: /website|web design|web development|landing page|ux|ui|conversion rate|cro/i,
-      answer: "We design and develop fast, distinctive, conversion-focused websites and landing pages. Engagements can include UX research, information architecture, UI design, development, analytics, technical SEO, and conversion-rate optimization.",
-    },
-    {
-      match: /automation|crm|workflow|ai integration|chatbot|lead nurturing/i,
-      answer: "We connect marketing, sales, and operations through CRM integrations, lead routing, nurturing sequences, data enrichment, reporting, and AI-assisted workflows. We begin by mapping the process and identifying the highest-value automation opportunities.",
-    },
-    {
-      match: /brand|branding|identity|logo|positioning/i,
-      answer: "Our brand practice covers research, positioning, messaging, visual identity, design systems, and rollout guidance. The goal is a distinctive brand platform that supports both recognition and commercial growth.",
-    },
-    {
-      match: /content|video|production|copywriting|creative/i,
-      answer: "We create strategy-led content and video for campaigns, social platforms, websites, and brand storytelling. Work can include concepts, scripts, copy, design, production, editing, and channel-specific adaptation.",
-    },
-    {
-      match: /lead generation|generate leads|more leads|sales pipeline|customer acquisition/i,
-      answer: "Our lead-generation programs connect offer strategy, paid and organic acquisition, landing pages, conversion tracking, CRM routing, and follow-up automation. We optimize for qualified pipeline and customer economics rather than raw lead volume.",
-    },
-    {
-      match: /price|pricing|cost|budget|fee|retainer|how much/i,
-      answer: "Engagements typically range from INR 2 lakh to INR 50 lakh or more per month, depending on scope, channels, production, and media spend. A short diagnostic call helps us recommend an appropriate plan and exact proposal.",
-    },
-    {
-      match: /how long|timeline|when.*result|how quickly|time.*result|30.*60/i,
-      answer: "Most partners see meaningful leading indicators within 30–60 days. SEO and brand-building usually compound over a longer period, while paid-media and conversion tests can produce learning sooner. A realistic timeline depends on your baseline and scope.",
-    },
-    {
-      match: /process|how.*work|start|begin|onboarding|next step/i,
-      answer: "Our five-stage process is Discovery, Strategy, Execution, Optimization, and Scale. We start with a growth diagnostic, define priorities and measurement, then execute in focused sprints and scale what proves effective.",
-    },
-    {
-      match: /report|reporting|dashboard|transparent|measurement|analytics|attribution/i,
-      answer: "Prime Polo uses live reporting and clear commercial KPIs. Depending on the engagement, dashboards can cover spend, leads, revenue, CAC, ROAS, conversion rates, pipeline, and experiment results, with regular senior-team reviews.",
-    },
-    {
-      match: /industr|healthcare|education|real estate|hospitality|e-?commerce|startup|professional service|local business/i,
-      answer: "We work across healthcare, education, real estate, hospitality, e-commerce, startups, professional services, and local businesses. Tell me your industry and objective, and I’ll point you toward the most relevant approach.",
-    },
-    {
-      match: /case stud|portfolio|past work|client|example/i,
-      answer: "Our featured work includes healthcare, education, and e-commerce growth engagements. The website’s Case Studies section summarizes selected challenges and outcomes. For examples closest to your category, request them at info@primepolomarketing.in.",
-    },
-    {
-      match: /roas|result|performance|retention|numbers|metric/i,
-      answer: "Prime Polo reports a 7.1× average ROAS and 94% client retention across its roster. These are portfolio benchmarks, not guarantees; expected performance depends on your offer, economics, market, data, and starting point.",
-    },
-    {
-      match: /location|located|where.*based|delhi|office|address/i,
-      answer: "Prime Polo is based in New Delhi, India and works with ambitious brands across markets. For meeting details, email info@primepolomarketing.in.",
-    },
-    {
-      match: /hours|open|availability|working time|business time/i,
-      answer: "Our listed business hours are Monday–Friday, 10:00–19:00 IST. You can email info@primepolomarketing.in at any time, and the team will respond during business hours.",
-    },
-    {
-      match: /contact|email|call|phone|meeting|consultation|proposal|quote|book/i,
-      answer: "Email info@primepolomarketing.in or use the website contact form to request a growth diagnostic. Include your company, website, main objective, approximate budget, and preferred timeline so the team can respond usefully.",
-    },
-    {
-      match: /thank|thanks|helpful/i,
-      answer: "You’re welcome! If you share your business type and primary growth goal, I can suggest the most relevant Prime Polo service or next step.",
-    },
+  const SERVICES = [
+    "Growth Strategy & Consulting",
+    "Influencer Marketing",
+    "Social Media Marketing",
+    "Performance Marketing (Google/Meta/LinkedIn)",
+    "Search Engine Optimization (SEO)",
+    "Website Design & Development",
+    "Landing Pages & Conversion Optimization",
+    "Content Strategy & Copywriting",
+    "Video Production & Creative",
+    "Brand Strategy & Visual Identity",
+    "Lead Generation & Sales Funnels",
+    "Marketing Automation",
+    "CRM Setup & Integration",
+    "AI Workflows & Chatbots",
+    "Email Marketing & Lead Nurturing",
+    "Analytics, Attribution & Reporting",
   ];
 
-  function fallback(message, recentHistory = []) {
-    const direct = KNOWLEDGE.find(({ match }) => match.test(message));
-    if (direct) return direct.answer;
+  const PROFILE_FIELDS = {
+    influencer: [
+      ["creator_name", "Creator/stage name", "text", true],
+      ["primary_handle", "Primary social handle", "text", true],
+      ["profile_links", "Profile links (one per line)", "textarea", true],
+      ["niche", "Content niche/category", "text", true],
+      ["primary_platform", "Primary platform", "select", true, ["Instagram", "YouTube", "LinkedIn", "Facebook", "X / Twitter", "Twitch", "Podcast", "Blog", "Other"]],
+      ["other_platforms", "Other active platforms", "text", false],
+      ["audience_size", "Total audience/follower size", "text", true],
+      ["avg_views", "Average views/reach per post", "text", false],
+      ["engagement_rate", "Average engagement rate", "text", false],
+      ["audience_profile", "Audience age, interests and demographics", "textarea", true],
+      ["audience_locations", "Top audience cities/countries", "text", true],
+      ["content_languages", "Content languages", "text", true],
+      ["content_formats", "Main content formats", "text", true],
+      ["years_creating", "Years creating professionally", "text", false],
+      ["past_collaborations", "Past brand collaborations", "textarea", false],
+      ["current_rates", "Current collaboration rate/range", "text", false],
+      ["representation", "Manager/agency representation", "text", false],
+      ["creator_goal", "Primary creator/business goal", "textarea", true],
+      ["creator_challenge", "Biggest current challenge", "textarea", true],
+    ],
+    company: [
+      ["company_name", "Company/brand name", "text", true],
+      ["job_title", "Your job title", "text", true],
+      ["website", "Company website", "url", false],
+      ["industry", "Industry/category", "text", true],
+      ["business_model", "Business model", "select", true, ["B2B", "B2C", "D2C", "Marketplace", "SaaS", "Services", "Nonprofit", "Other"]],
+      ["company_size", "Company size", "select", true, ["1–5", "6–20", "21–50", "51–200", "201–500", "500+"]],
+      ["years_operating", "Years in business", "text", false],
+      ["headquarters", "Headquarters/location", "text", true],
+      ["markets_served", "Cities/countries served", "text", true],
+      ["target_audience", "Target customer/audience", "textarea", true],
+      ["offer", "Main products/services and typical value", "textarea", true],
+      ["revenue_range", "Approximate annual revenue range", "select", false, ["Pre-revenue", "Under ₹50L", "₹50L–₹2Cr", "₹2Cr–₹10Cr", "₹10Cr–₹50Cr", "₹50Cr+", "Prefer not to say"]],
+      ["marketing_team", "Current marketing team/resources", "textarea", true],
+      ["current_channels", "Current marketing channels", "textarea", true],
+      ["current_tools", "CRM, analytics and marketing tools", "textarea", false],
+      ["company_goal", "Primary commercial/marketing goal", "textarea", true],
+      ["company_challenge", "Biggest growth constraint", "textarea", true],
+      ["decision_process", "Decision makers and approval process", "textarea", false],
+    ],
+    agency: [
+      ["agency_name", "Agency name", "text", true],
+      ["job_title", "Your role/title", "text", true],
+      ["website", "Agency website", "url", false],
+      ["agency_type", "Agency type/specialization", "text", true],
+      ["team_size", "Team size", "select", true, ["Solo", "2–5", "6–20", "21–50", "51–100", "100+"]],
+      ["headquarters", "Headquarters/location", "text", true],
+      ["markets_served", "Markets/countries served", "text", true],
+      ["agency_services", "Services your agency currently offers", "textarea", true],
+      ["client_profile", "Typical client industries and sizes", "textarea", true],
+      ["active_clients", "Approximate active client count", "text", false],
+      ["partnership_type", "Partnership required", "select", true, ["White-label delivery", "Specialist subcontracting", "Overflow capacity", "Referral partnership", "Joint pitch", "Technology/automation partner", "Other"]],
+      ["white_label", "White-label/confidentiality requirements", "textarea", false],
+      ["current_stack", "Current tools and delivery stack", "textarea", false],
+      ["delivery_capacity", "Current capacity and resource gap", "textarea", true],
+      ["agency_goal", "Partnership goal", "textarea", true],
+      ["agency_challenge", "Biggest delivery/growth challenge", "textarea", true],
+    ],
+  };
 
-    if (/^(tell me more|more details|explain|how so|why)\??$/i.test(message.trim())) {
-      const previous = [...recentHistory].reverse().find((item) => item.role === "user" && item.content !== message);
-      if (previous) {
-        const contextual = KNOWLEDGE.find(({ match }) => match.test(previous.content));
-        if (contextual) return `${contextual.answer} For a recommendation tailored to your situation, share your industry, objective, current monthly leads or revenue, and approximate budget.`;
-      }
-    }
+  const KNOWLEDGE = [
+    [/^(hi|hello|hey|namaste)\b/i, "Hello! I can explain Prime Polo’s services or help you submit a detailed profile for a tailored plan. Choose “Get a plan” above to begin."],
+    [/seo|organic|rank on google|keyword/i, "Our SEO work includes technical audits, keyword and competitor research, site architecture, on-page optimization, content planning, authority building, and reporting. We prioritize qualified organic demand and conversion—not rankings alone."],
+    [/advertising|paid media|google ads|meta ads|ppc/i, "Performance marketing covers Google, Meta, LinkedIn, display, and video, connecting targeting, creative testing, landing pages, attribution, and optimization against CAC, ROAS, pipeline, and revenue."],
+    [/price|pricing|cost|budget|how much/i, "Engagements typically range from INR 2 lakh to INR 50 lakh or more per month depending on scope, channels, production, technology, and media. Complete the detailed profile under “Get a plan” for an appropriate recommendation."],
+    [/service|what do you do|help/i, `Prime Polo can provide: ${SERVICES.join(", ")}. Choose “Get a plan” to select every service you are interested in.`],
+    [/contact|email|meeting|proposal/i, "Email info@primepolomarketing.in or complete the “Get a plan” profile. The structured profile helps the team prepare a relevant response before contacting you."],
+  ];
 
-    return "I can answer questions about Prime Polo’s services, SEO, paid advertising, social media, influencer campaigns, websites, automation, branding, content, pricing, timelines, industries, results, and process. Ask about one of these topics, or email info@primepolomarketing.in for a tailored recommendation.";
+  function fallback(message) {
+    return KNOWLEDGE.find(([pattern]) => pattern.test(message))?.[1]
+      || "Ask me about Prime Polo’s marketing services, pricing, process, or results. For a tailored recommendation, choose “Get a plan” and complete your Influencer, Company, or Agency profile.";
   }
 
-  function element(tag, className, text) {
+  function el(tag, className, text) {
     const node = document.createElement(tag);
     if (className) node.className = className;
-    if (text) node.textContent = text;
+    if (text !== undefined) node.textContent = text;
     return node;
   }
 
+  function makeField([name, labelText, type, required, options]) {
+    const label = el("label", "ppai-field");
+    const caption = el("span", "ppai-label", `${labelText}${required ? " *" : ""}`);
+    let input;
+    if (type === "textarea") {
+      input = el("textarea", "ppai-control");
+      input.rows = 3;
+    } else if (type === "select") {
+      input = el("select", "ppai-control");
+      const placeholder = el("option", "", "Select an option");
+      placeholder.value = "";
+      input.append(placeholder);
+      options.forEach((option) => {
+        const item = el("option", "", option);
+        item.value = option;
+        input.append(item);
+      });
+    } else {
+      input = el("input", "ppai-control");
+      input.type = type;
+    }
+    input.name = name;
+    input.required = required;
+    input.maxLength = type === "textarea" ? 2000 : 300;
+    label.append(caption, input);
+    return label;
+  }
+
   function boot() {
-    // Disable the original React/Framer chatbot. This replacement is mounted
-    // outside #root, so a chat update can never unmount or blank the website.
-    document.querySelectorAll(".chatbot").forEach((node) => {
-      node.style.setProperty("display", "none", "important");
-    });
+    document.querySelectorAll(".chatbot").forEach((node) => node.style.setProperty("display", "none", "important"));
 
-    const host = element("section", "ppai-host");
-    host.setAttribute("aria-label", "Prime Intelligence chatbot");
-
-    const panel = element("div", "ppai-panel");
+    const host = el("section", "ppai-host");
+    const panel = el("div", "ppai-panel");
     panel.hidden = true;
 
-    const header = element("header", "ppai-header");
-    const identity = element("div", "ppai-identity");
-    const title = element("strong", "", "Prime Intelligence");
-    const status = element("small", "", "● Online now");
-    identity.append(title, status);
-    const close = element("button", "ppai-close", "×");
+    const header = el("header", "ppai-header");
+    const identity = el("div", "ppai-identity");
+    identity.append(el("strong", "", "Prime Intelligence"), el("small", "", "● Online now"));
+    const close = el("button", "ppai-close", "×");
     close.type = "button";
     close.setAttribute("aria-label", "Close chat");
     header.append(identity, close);
 
-    const messages = element("div", "ppai-messages");
+    const tabs = el("nav", "ppai-tabs");
+    const chatTab = el("button", "active", "AI Assistant");
+    const planTab = el("button", "", "Get a plan");
+    chatTab.type = planTab.type = "button";
+    tabs.append(chatTab, planTab);
+
+    const chatView = el("div", "ppai-view ppai-chat-view");
+    const messages = el("div", "ppai-messages");
     messages.setAttribute("aria-live", "polite");
-
-    const form = element("form", "ppai-form");
-    const input = element("input", "ppai-input");
-    input.type = "text";
-    input.maxLength = 800;
-    input.autocomplete = "off";
-    input.placeholder = "Ask about growth…";
-    input.setAttribute("aria-label", "Chat message");
-    const send = element("button", "ppai-send", "Send");
+    const chatForm = el("form", "ppai-form");
+    const chatInput = el("input", "ppai-input");
+    chatInput.maxLength = 800;
+    chatInput.placeholder = "Ask about growth…";
+    const send = el("button", "ppai-send", "Send");
     send.type = "submit";
-    form.append(input, send);
+    chatForm.append(chatInput, send);
+    chatView.append(messages, chatForm);
 
-    const toggle = element("button", "ppai-toggle", "✦");
+    const planView = el("div", "ppai-view ppai-plan-view");
+    planView.hidden = true;
+    const planIntro = el("div", "ppai-plan-intro");
+    planIntro.append(el("strong", "", "Tell us who you are"), el("p", "", "Choose a profile. We’ll collect the details needed to recommend the right services."));
+    const profileChoices = el("div", "ppai-profile-choices");
+    [["influencer", "Influencer", "Creators, public figures and personal brands"], ["company", "Company", "Businesses, brands, startups and institutions"], ["agency", "Agency", "Marketing, creative and consulting partners"]].forEach(([value, title, description]) => {
+      const button = el("button", "ppai-profile");
+      button.type = "button";
+      button.dataset.profile = value;
+      button.append(el("strong", "", title), el("small", "", description));
+      profileChoices.append(button);
+    });
+    planView.append(planIntro, profileChoices);
+
+    const toggle = el("button", "ppai-toggle", "✦");
     toggle.type = "button";
-    toggle.setAttribute("aria-label", "Open AI assistant");
+    toggle.setAttribute("aria-label", "Open Prime Intelligence");
 
-    panel.append(header, messages, form);
+    panel.append(header, tabs, chatView, planView);
     host.append(panel, toggle);
     document.body.append(host);
 
@@ -171,77 +190,170 @@
     let busy = false;
 
     function addMessage(role, text) {
-      const row = element("div", `ppai-message ppai-${role}`);
-      const bubble = element("p", "", text);
-      row.append(bubble);
+      const row = el("div", `ppai-message ppai-${role}`);
+      row.append(el("p", "", text));
       messages.append(row);
       messages.scrollTop = messages.scrollHeight;
       history.push({ role, content: text });
     }
 
-    function setOpen(open) {
-      panel.hidden = !open;
-      toggle.hidden = open;
-      toggle.setAttribute("aria-expanded", String(open));
-      if (open) window.setTimeout(() => input.focus(), 0);
+    function switchView(view) {
+      const chat = view === "chat";
+      chatView.hidden = !chat;
+      planView.hidden = chat;
+      chatTab.classList.toggle("active", chat);
+      planTab.classList.toggle("active", !chat);
     }
 
-    async function ask(rawMessage) {
-      const message = rawMessage.trim().slice(0, 800);
-      if (!message || busy) return;
+    function renderIntake(profile) {
+      planView.innerHTML = "";
+      const form = el("form", "ppai-intake");
+      form.dataset.profile = profile;
+      form.append(el("h3", "", `${profile[0].toUpperCase()}${profile.slice(1)} profile`));
+      form.append(el("p", "ppai-required-note", "Fields marked * are required. Your details will be stored securely for follow-up."));
 
+      const contactSection = el("fieldset", "ppai-section");
+      contactSection.append(el("legend", "", "1. Contact details"));
+      [
+        ["full_name", "Full name", "text", true],
+        ["email", "Business email", "email", true],
+        ["phone", "Phone / WhatsApp with country code", "tel", true],
+        ["preferred_contact", "Preferred contact method", "select", true, ["Email", "Phone call", "WhatsApp"]],
+      ].forEach((field) => contactSection.append(makeField(field)));
+
+      const occupationSection = el("fieldset", "ppai-section");
+      occupationSection.append(el("legend", "", "2. Occupation and business details"));
+      PROFILE_FIELDS[profile].forEach((field) => occupationSection.append(makeField(field)));
+
+      const serviceSection = el("fieldset", "ppai-section");
+      serviceSection.append(el("legend", "", "3. Services required *"));
+      serviceSection.append(el("p", "ppai-help", "Select every service you may need. The team will prioritize them after reviewing your profile."));
+      const serviceGrid = el("div", "ppai-service-grid");
+      SERVICES.forEach((service) => {
+        const label = el("label", "ppai-check");
+        const box = el("input");
+        box.type = "checkbox";
+        box.name = "services";
+        box.value = service;
+        label.append(box, el("span", "", service));
+        serviceGrid.append(label);
+      });
+      serviceSection.append(serviceGrid);
+      [
+        ["other_service", "Any other service required", "text", false],
+        ["objectives", "What outcomes do you want to achieve?", "textarea", true],
+        ["success_metrics", "How will you measure success?", "textarea", true],
+        ["current_providers", "Current agency, freelancers or internal support", "textarea", false],
+        ["monthly_budget", "Approximate monthly marketing budget", "select", true, ["Under ₹2L", "₹2L–₹5L", "₹5L–₹10L", "₹10L–₹25L", "₹25L–₹50L", "₹50L+", "Need guidance"]],
+        ["timeline", "Preferred start timeline", "select", true, ["Immediately", "Within 30 days", "1–3 months", "3–6 months", "Exploring options"]],
+        ["additional_notes", "Anything else the team should know", "textarea", false],
+        ["referral_source", "How did you hear about Prime Polo?", "text", false],
+      ].forEach((field) => serviceSection.append(makeField(field)));
+
+      const consent = el("label", "ppai-consent");
+      const consentBox = el("input");
+      consentBox.type = "checkbox";
+      consentBox.name = "consent";
+      consentBox.required = true;
+      consent.append(consentBox, el("span", "", "I consent to Prime Polo storing these details and contacting me about relevant services. *"));
+
+      // Honeypot for automated spam.
+      const websiteTrap = el("input", "ppai-trap");
+      websiteTrap.name = "website_confirm";
+      websiteTrap.tabIndex = -1;
+      websiteTrap.autocomplete = "off";
+
+      const status = el("div", "ppai-intake-status");
+      const actions = el("div", "ppai-intake-actions");
+      const back = el("button", "ppai-secondary", "Change profile");
+      back.type = "button";
+      const submit = el("button", "ppai-primary", "Save profile & request plan");
+      submit.type = "submit";
+      actions.append(back, submit);
+      form.append(contactSection, occupationSection, serviceSection, consent, websiteTrap, status, actions);
+      planView.append(form);
+
+      back.addEventListener("click", () => {
+        planView.innerHTML = "";
+        planView.append(planIntro, profileChoices);
+      });
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        status.className = "ppai-intake-status";
+        const data = new FormData(form);
+        const services = data.getAll("services");
+        if (!services.length) {
+          status.classList.add("error");
+          status.textContent = "Please select at least one service.";
+          serviceSection.scrollIntoView({ block: "start" });
+          return;
+        }
+        const details = {};
+        for (const [key, value] of data.entries()) {
+          if (!["services", "consent", "website_confirm"].includes(key)) details[key] = String(value).trim();
+        }
+        submit.disabled = true;
+        submit.textContent = "Saving…";
+        try {
+          const response = await fetch("/api/intake", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ profile_type: profile, services, details, consent: data.get("consent") === "on", website_confirm: data.get("website_confirm") || "" }),
+          });
+          const result = await response.json().catch(() => ({}));
+          if (!response.ok) throw new Error(result.error || "Could not save your profile.");
+          planView.innerHTML = "";
+          const success = el("div", "ppai-success");
+          success.append(el("strong", "", "Profile saved successfully"), el("p", "", `Thank you, ${details.full_name}. Reference: ${result.reference}. Prime Polo can contact you using the details provided.`));
+          const askButton = el("button", "ppai-primary", "Ask the AI assistant");
+          askButton.type = "button";
+          askButton.addEventListener("click", () => switchView("chat"));
+          success.append(askButton);
+          planView.append(success);
+        } catch (error) {
+          status.classList.add("error");
+          status.textContent = error.message;
+          submit.disabled = false;
+          submit.textContent = "Save profile & request plan";
+        }
+      });
+    }
+
+    profileChoices.querySelectorAll("button").forEach((button) => button.addEventListener("click", () => renderIntake(button.dataset.profile)));
+    chatTab.addEventListener("click", () => switchView("chat"));
+    planTab.addEventListener("click", () => switchView("plan"));
+    toggle.addEventListener("click", () => { panel.hidden = false; toggle.hidden = true; });
+    close.addEventListener("click", () => { panel.hidden = true; toggle.hidden = false; });
+
+    chatForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const message = chatInput.value.trim().slice(0, 800);
+      if (!message || busy) return;
       addMessage("user", message);
-      input.value = "";
+      chatInput.value = "";
       busy = true;
       send.disabled = true;
       send.textContent = "…";
-
       let reply;
       try {
-        const controller = new AbortController();
-        const timeout = window.setTimeout(() => controller.abort(), 18000);
-        const response = await fetch("/api/chat", {
-          method: "POST",
-          signal: controller.signal,
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message, history: history.slice(-9, -1) }),
-        });
-        window.clearTimeout(timeout);
-        const data = await response.json().catch(() => ({}));
-        if (!response.ok || typeof data.reply !== "string" || !data.reply.trim()) {
-          throw new Error(data.error || "AI unavailable");
-        }
-        reply = data.reply.trim();
+        const response = await fetch("/api/chat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ message, history: history.slice(-9, -1) }) });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok || !result.reply) throw new Error(result.error || "AI unavailable");
+        reply = result.reply;
       } catch (error) {
-        console.warn("Prime Intelligence used its local fallback:", error);
-        reply = fallback(message, history);
+        reply = fallback(message);
       } finally {
         busy = false;
         send.disabled = false;
         send.textContent = "Send";
       }
-
       addMessage("assistant", reply);
-    }
-
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      ask(input.value);
-      return false;
-    });
-    toggle.addEventListener("click", () => setOpen(true));
-    close.addEventListener("click", () => setOpen(false));
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && !panel.hidden) setOpen(false);
     });
 
-    addMessage("assistant", "Welcome to Prime Polo. What would you like to grow?");
+    addMessage("assistant", "Welcome to Prime Polo. Ask me a question, or choose “Get a plan” to submit a detailed Influencer, Company, or Agency profile and select the services you need.");
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", boot, { once: true });
-  } else {
-    boot();
-  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot, { once: true });
+  else boot();
 })();

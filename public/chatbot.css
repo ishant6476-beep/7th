@@ -1,112 +1,68 @@
-/* Standalone chatbot. It intentionally avoids transforms, backdrop-filter,
-   React and animation to prevent mobile Safari/embedded-browser blank screens. */
+/* Standalone chatbot and intake form; no transforms/backdrop filters. */
 .chatbot { display: none !important; }
-.ppai-host {
-  position: fixed;
-  z-index: 1000;
-  right: 24px;
-  bottom: 24px;
-  font-family: Inter, Arial, sans-serif;
-  color: var(--text-primary, #f7f3ff);
-}
+.ppai-host { position: fixed; z-index: 1000; right: 24px; bottom: 24px; font-family: Inter, Arial, sans-serif; color: var(--text-primary,#f7f3ff); }
 .ppai-host *, .ppai-host *::before, .ppai-host *::after { box-sizing: border-box; }
 .ppai-host [hidden] { display: none !important; }
-.ppai-toggle {
-  width: 58px;
-  height: 58px;
-  border: 1px solid #d6a928;
-  border-radius: 50%;
-  background: #7428d8;
-  box-shadow: 0 12px 34px rgba(67, 24, 120, .35);
-  color: #fff;
-  font-size: 24px;
-  cursor: pointer;
-}
-.ppai-panel {
-  width: 360px;
-  height: min(540px, calc(100vh - 48px));
-  border: 1px solid var(--border-card, rgba(255,255,255,.14));
-  background: var(--bg-card, #0e0a18);
-  box-shadow: 0 24px 60px rgba(0,0,0,.4);
-  overflow: hidden;
-}
-.ppai-header {
-  height: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 13px 16px;
-  border-bottom: 1px solid var(--border-card, rgba(255,255,255,.12));
-  background: var(--bg-elevated, #151022);
-}
-.ppai-identity strong { display: block; font-size: 14px; letter-spacing: .04em; text-transform: uppercase; }
-.ppai-identity small { display: block; margin-top: 5px; color: #34d399; font-size: 9px; }
-.ppai-close {
-  width: 36px;
-  height: 36px;
-  border: 1px solid var(--border-card, rgba(255,255,255,.12));
-  background: transparent;
-  color: var(--text-primary, #fff);
-  font-size: 25px;
-  line-height: 1;
-  cursor: pointer;
-}
-.ppai-messages {
-  height: calc(100% - 128px);
-  padding: 16px 14px;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  background: var(--bg-card, #0e0a18);
-}
-.ppai-message { display: flex; margin: 9px 0; }
-.ppai-message p {
-  max-width: 84%;
-  margin: 0;
-  padding: 11px 12px;
-  border: 1px solid var(--border-card, rgba(255,255,255,.12));
-  background: var(--input-bg, rgba(255,255,255,.04));
-  color: var(--text-secondary, #aab0bd);
-  font-size: 12px;
-  line-height: 1.55;
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-}
-.ppai-user { justify-content: flex-end; }
-.ppai-user p { border-color: rgba(139,61,255,.35); background: rgba(139,61,255,.18); color: var(--text-primary, #fff); }
-.ppai-form {
-  height: 58px;
-  display: flex;
-  gap: 8px;
-  padding: 9px 10px;
-  border-top: 1px solid var(--border-card, rgba(255,255,255,.12));
-  background: var(--bg-elevated, #151022);
-}
-.ppai-input {
-  min-width: 0;
-  flex: 1;
-  border: 1px solid var(--border-card, rgba(255,255,255,.12));
-  border-radius: 0;
-  outline: none;
-  padding: 0 11px;
-  background: var(--input-bg, rgba(255,255,255,.04));
-  color: var(--text-primary, #fff);
-  font-size: 12px;
-}
-.ppai-input:focus { border-color: #8b3dff; }
-.ppai-send {
-  width: 62px;
-  border: 0;
-  background: #7a1fff;
-  color: #fff;
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-.ppai-send:disabled { opacity: .65; cursor: wait; }
+.ppai-toggle { width: 58px; height: 58px; border: 1px solid #d6a928; border-radius: 50%; background:#7428d8; box-shadow:0 12px 34px rgba(67,24,120,.35); color:#fff; font-size:24px; cursor:pointer; }
+.ppai-panel { width: 420px; height:min(680px,calc(100vh - 48px)); display:flex; flex-direction:column; border:1px solid var(--border-card,rgba(255,255,255,.14)); background:var(--bg-card,#0e0a18); box-shadow:0 24px 60px rgba(0,0,0,.4); overflow:hidden; }
+.ppai-header { height:68px; flex:0 0 68px; display:flex; align-items:center; justify-content:space-between; padding:13px 16px; border-bottom:1px solid var(--border-card,rgba(255,255,255,.12)); background:var(--bg-elevated,#151022); }
+.ppai-identity strong { display:block; font-size:14px; letter-spacing:.04em; text-transform:uppercase; }
+.ppai-identity small { display:block; margin-top:5px; color:#34d399; font-size:9px; }
+.ppai-close { width:36px; height:36px; border:1px solid var(--border-card,rgba(255,255,255,.12)); background:transparent; color:var(--text-primary,#fff); font-size:25px; line-height:1; cursor:pointer; }
+.ppai-tabs { height:44px; flex:0 0 44px; display:grid; grid-template-columns:1fr 1fr; border-bottom:1px solid var(--border-card,rgba(255,255,255,.12)); background:var(--bg-elevated,#151022); }
+.ppai-tabs button { border:0; border-bottom:2px solid transparent; background:transparent; color:var(--text-secondary,#94a3b8); font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; cursor:pointer; }
+.ppai-tabs button.active { border-bottom-color:#f9c633; color:var(--text-primary,#fff); }
+.ppai-view { min-height:0; flex:1; }
+.ppai-chat-view { display:flex; flex-direction:column; }
+.ppai-messages { min-height:0; flex:1; padding:16px 14px; overflow-y:auto; overscroll-behavior:contain; background:var(--bg-card,#0e0a18); }
+.ppai-message { display:flex; margin:9px 0; }
+.ppai-message p { max-width:88%; margin:0; padding:11px 12px; border:1px solid var(--border-card,rgba(255,255,255,.12)); background:var(--input-bg,rgba(255,255,255,.04)); color:var(--text-secondary,#aab0bd); font-size:12px; line-height:1.55; white-space:pre-wrap; overflow-wrap:anywhere; }
+.ppai-user { justify-content:flex-end; }
+.ppai-user p { border-color:rgba(139,61,255,.35); background:rgba(139,61,255,.18); color:var(--text-primary,#fff); }
+.ppai-form { height:58px; flex:0 0 58px; display:flex; gap:8px; padding:9px 10px; border-top:1px solid var(--border-card,rgba(255,255,255,.12)); background:var(--bg-elevated,#151022); }
+.ppai-input { min-width:0; flex:1; border:1px solid var(--border-card,rgba(255,255,255,.12)); border-radius:0; outline:none; padding:0 11px; background:var(--input-bg,rgba(255,255,255,.04)); color:var(--text-primary,#fff); font-size:12px; }
+.ppai-input:focus,.ppai-control:focus { border-color:#8b3dff; outline:none; }
+.ppai-send { width:62px; border:0; background:#7a1fff; color:#fff; font-size:10px; font-weight:700; text-transform:uppercase; cursor:pointer; }
+.ppai-send:disabled,.ppai-primary:disabled { opacity:.65; cursor:wait; }
 
-@media (max-width: 600px) {
-  .ppai-host { left: 10px; right: 10px; bottom: 76px; }
-  .ppai-toggle { margin-left: auto; display: block; width: 50px; height: 50px; }
-  .ppai-panel { width: 100%; height: calc(100dvh - 96px); max-height: 620px; }
+.ppai-plan-view { overflow-y:auto; overscroll-behavior:contain; padding:18px; background:var(--bg-card,#0e0a18); }
+.ppai-plan-intro strong { font-size:17px; text-transform:uppercase; }
+.ppai-plan-intro p { margin:7px 0 17px; color:var(--text-secondary,#94a3b8); font-size:11px; line-height:1.5; }
+.ppai-profile-choices { display:grid; gap:10px; }
+.ppai-profile { display:block; width:100%; padding:17px; border:1px solid var(--border-card,rgba(255,255,255,.12)); background:var(--input-bg,rgba(255,255,255,.04)); color:var(--text-primary,#fff); text-align:left; cursor:pointer; }
+.ppai-profile:hover { border-color:#8b3dff; background:rgba(139,61,255,.1); }
+.ppai-profile strong { display:block; color:#f9c633; font-size:14px; text-transform:uppercase; }
+.ppai-profile small { display:block; margin-top:5px; color:var(--text-secondary,#94a3b8); font-size:10px; line-height:1.4; }
+.ppai-intake h3 { margin:0; color:#f9c633; font-size:18px; text-transform:uppercase; }
+.ppai-required-note,.ppai-help { color:var(--text-secondary,#94a3b8); font-size:10px; line-height:1.5; }
+.ppai-section { min-width:0; margin:18px 0; padding:14px; border:1px solid var(--border-card,rgba(255,255,255,.12)); }
+.ppai-section legend { padding:0 7px; color:#f9c633; font-size:11px; font-weight:700; text-transform:uppercase; }
+.ppai-field { display:block; margin:12px 0; }
+.ppai-label { display:block; margin-bottom:6px; color:var(--text-secondary,#94a3b8); font-size:9px; font-weight:600; }
+.ppai-control { width:100%; min-height:40px; border:1px solid var(--border-card,rgba(255,255,255,.12)); border-radius:0; padding:9px 10px; background:var(--input-bg,rgba(255,255,255,.04)); color:var(--text-primary,#fff); font:inherit; font-size:11px; }
+textarea.ppai-control { resize:vertical; line-height:1.45; }
+.ppai-control option { color:#111; background:#fff; }
+.ppai-service-grid { display:grid; gap:7px; margin:12px 0 18px; }
+.ppai-check { display:flex; align-items:flex-start; gap:8px; padding:9px; border:1px solid var(--border-card,rgba(255,255,255,.1)); color:var(--text-secondary,#94a3b8); font-size:9px; line-height:1.35; cursor:pointer; }
+.ppai-check:has(input:checked) { border-color:rgba(249,198,51,.45); background:rgba(249,198,51,.06); color:var(--text-primary,#fff); }
+.ppai-check input { accent-color:#8b3dff; }
+.ppai-consent { display:flex; align-items:flex-start; gap:8px; color:var(--text-secondary,#94a3b8); font-size:9px; line-height:1.45; }
+.ppai-consent input { accent-color:#8b3dff; }
+.ppai-trap { position:absolute!important; left:-10000px!important; width:1px!important; height:1px!important; opacity:0!important; }
+.ppai-intake-status { margin:12px 0; padding:0; font-size:10px; }
+.ppai-intake-status.error { padding:10px; border:1px solid rgba(251,113,133,.35); background:rgba(251,113,133,.07); color:#fb7185; }
+.ppai-intake-actions { display:grid; grid-template-columns:1fr 1.6fr; gap:8px; margin-top:15px; }
+.ppai-primary,.ppai-secondary { min-height:44px; border:0; padding:8px 10px; font-size:9px; font-weight:700; text-transform:uppercase; cursor:pointer; }
+.ppai-primary { background:#7a1fff; color:#fff; }
+.ppai-secondary { border:1px solid var(--border-card,rgba(255,255,255,.12)); background:transparent; color:var(--text-secondary,#94a3b8); }
+.ppai-success { padding:30px 15px; text-align:center; }
+.ppai-success strong { color:#34d399; font-size:17px; text-transform:uppercase; }
+.ppai-success p { margin:12px 0 22px; color:var(--text-secondary,#94a3b8); font-size:11px; line-height:1.6; }
+
+@media (max-width:600px) {
+  .ppai-host { left:8px; right:8px; bottom:70px; }
+  .ppai-toggle { display:block; width:50px; height:50px; margin-left:auto; }
+  .ppai-panel { width:100%; height:calc(100dvh - 84px); max-height:none; }
+  .ppai-plan-view { padding:14px; }
+  .ppai-section { padding:11px; }
 }
