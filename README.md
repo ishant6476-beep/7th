@@ -81,6 +81,37 @@ All submissions are available in **Supabase → Table Editor → leads**:
 - Every Influencer, Company, or Agency answer is in `intake_details` as structured JSON.
 - `source` distinguishes `website_contact` from `chatbot_intake`.
 
+## Configure dashboard work profiles
+
+After an authenticated user reaches `/dashboard`, users without a saved work profile are asked to choose:
+
+- Company
+- Influencer
+- Other
+
+The form then collects contact details, profile-specific work information, links, platforms, goals, challenges, and services of interest. Existing users can reopen **Work profile** from the dashboard and update their answers.
+
+Run this once in **Supabase → SQL Editor**:
+
+```text
+supabase/user_work_profiles.sql
+```
+
+Profiles are saved in:
+
+```text
+Supabase → Table Editor → user_work_profiles
+```
+
+The selected type is stored in `profile_type`; all form answers are stored as structured JSON in `profile_data`. Records reference `auth.users(id)` and are deleted automatically when the corresponding authentication user is deleted.
+
+The endpoint uses the same server variables as the detailed lead intake:
+
+```env
+SUPABASE_URL=https://YOUR_PROJECT.supabase.co
+SUPABASE_SECRET_KEY=sb_secret_your_server_key
+```
+
 ## Deploy
 
 ```bash
@@ -106,7 +137,11 @@ npm run dev
 - `public/chatbot.css` — isolated chatbot styles
 - `api/chat.js` — Groq/Gemini/knowledge-base server endpoint
 - `api/intake.js` — validated server endpoint that saves visitor profiles to `public.leads`
-- `supabase/leads_intake_upgrade.sql` — safely adds profile, service and JSON detail columns to `public.leads`
+- `api/user-profile.js` — authenticated dashboard work-profile endpoint
+- `public/user-profile.js` — Company, Influencer and Other onboarding interface
+- `public/user-profile.css` — dashboard profile interface styles
+- `supabase/leads_intake_upgrade.sql` — adds profile, service and JSON detail columns to `public.leads`
+- `supabase/user_work_profiles.sql` — authenticated user work-profile table
 - `public/images/` — website images
 - `scripts/build.mjs` — production build
 - `.env.example` — environment template
