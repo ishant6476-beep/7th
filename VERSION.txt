@@ -1,23 +1,16 @@
-Prime Polo recovery build: 14.2-high-resolution-theme-logos
+Prime Polo recovery build: 14.3-exact-logo-upscale
 
-New professional logo assets:
-- Dark theme: prime-polo-logo-dark-hq.webp
-- Light theme: prime-polo-logo-light-hq.webp
-- High-resolution PNG masters are included for future print/export use
+Correction:
+- The redesigned AI logo variants were removed.
+- No monogram, wording, typography, layout, proportion or color was changed.
+- The website now uses the exact original Prime Polo logo artwork supplied by the owner.
 
-Both variants use the same:
-- Double circular border
-- Intertwined PP monogram
-- PRIME POLO wordmark
-- MARKETING AGENCY descriptor
-- Rising with Trust tagline
-- Exact proportions and professional gold treatment
+Quality improvement only:
+- Empty side margins were removed without cropping the circular artwork.
+- The original was resampled at high resolution with a restrained output sharpen.
+- A 2048 × 2048 PNG master is included.
+- A lossless 768 × 768 WebP is used by the website for sharp rendering.
+- The exact same logo is used in both dark and light themes.
+- Header, footer, SEO, service and blog pages all use this identical asset.
 
-Theme behavior:
-- Dark theme automatically uses the obsidian-black and metallic-gold logo
-- Light theme automatically uses the ivory-white and metallic-gold/charcoal logo
-- Header, footer, service, SEO and blog pages switch automatically
-- Logos remain perfectly circular and sharp
-- Optimized 512px WebP files keep browser downloads small
-
-All other Version 14.1 functionality and the restored UI remain unchanged.
+The logo remains circular. Everything else in Version 14.2 remains unchanged.

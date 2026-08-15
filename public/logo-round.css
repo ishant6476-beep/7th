@@ -1,17 +1,8 @@
-/* Prime Polo-owned logo treatment: circular, sharp and theme-aware. */
-.theme-dark .brand-logo,
-.theme-dark .footer-logo,
-.theme-dark .own-logo {
-  content: url('/images/prime-polo-logo-dark-hq.webp') !important;
-}
-.theme-light .brand-logo,
-.theme-light .footer-logo,
-.theme-light .own-logo {
-  content: url('/images/prime-polo-logo-light-hq.webp') !important;
-}
+/* Exact Prime Polo logo artwork, preserved and rendered from a sharpened high-resolution source. */
 .brand-logo,
 .footer-logo,
 .own-logo {
+  content: url('/images/prime-polo-logo-original-hq.webp') !important;
   aspect-ratio: 1 / 1 !important;
   border: 0 !important;
   border-radius: 50% !important;
@@ -19,6 +10,7 @@
   background: transparent !important;
   object-fit: cover !important;
   overflow: hidden !important;
+  image-rendering: auto;
 }
 .brand-logo { width: 50px !important; height: 50px !important; }
 .footer-logo { width: 84px !important; height: 84px !important; }
