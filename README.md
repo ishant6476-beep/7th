@@ -22,7 +22,9 @@ This is a deployable recovery and full visual redesign of the Prime Polo website
 - Added dedicated Influencer Marketing, Blog, and International Growth sections
 - Blog includes four complete, readable articles covering SEO/AEO/GEO, influencer briefs, paid-media measurement, and conversion-ready websites
 - Every service card now opens a functional detail panel; the Services navigation link now lands on the correct section
-- Added direct calling and WhatsApp actions for **7903946440** in the header, contact area and responsive floating contact dock
+- Click-to-call uses **7903946440**; WhatsApp enquiries use **7992278315**
+- Connected official Instagram: `https://www.instagram.com/primepolo_marketing/`
+- Connected official LinkedIn: `https://www.linkedin.com/in/prime-polo-2b12853b6`
 - Service catalog expanded to Creative & Communication; Search Engine Marketing with SEO/AEO/GEO; full-funnel Digital Marketing; Website, Web App and Mobile App Development; Ad Management; UGC Content Creation; Social Media and Influencer Marketing; Online Reputation Management; Content and Video Production; Branding and Design; Performance Marketing; Lead Generation; Marketing Automation/CRM; and Analytics/Attribution
 
 ## Data flow

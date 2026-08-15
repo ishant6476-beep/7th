@@ -1,25 +1,11 @@
-Prime Polo recovery build: 13.0-restored-ui-business-emails
+Prime Polo recovery build: 14.1-round-logo
 
-Restored:
-- The previous black-and-yellow performance-agency UI from Version 11
-- Previous header, hero, cards, service panels, generated sections, contact design and footer
-- Previous matching design for dedicated SEO, service and blog pages
+Logo update:
+- Prime Polo's header logo is now perfectly circular
+- Prime Polo's footer logo is now perfectly circular
+- Mobile header and footer sizes remain responsive
+- Own logo keeps its original dark background with no white tile
+- Dedicated SEO, service and blog page headers use the same round logo treatment
+- Third-party company/client logos still use white readability tiles
 
-Email routing updated:
-- info@primepolomarketing.in
-  General enquiries, growth briefs, chatbot guidance, proposals and public business contact
-
-- support@primepolomarketing.in
-  Account assistance, privacy questions, data-rights requests, terms questions and technical support
-
-Removed:
-- primepolomarketing@gmail.com references
-- The later Obsidian Aurora theme override
-
-Unchanged:
-- Website content and navigation
-- SEO pages and sitemap
-- Services and blog content
-- Authentication, dashboard and mandatory profile onboarding
-- Chatbot and Supabase data workflows
-- Phone, WhatsApp and Google Maps
+All Version 14 contact, social, SEO, UI and application functionality remains unchanged.

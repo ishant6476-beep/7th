@@ -2,7 +2,10 @@
   "use strict";
   const PHONE_DISPLAY = "7903946440";
   const PHONE_E164 = "+917903946440";
-  const WHATSAPP_URL = "https://wa.me/917903946440?text=Hello%20Prime%20Polo%2C%20I%20would%20like%20to%20discuss%20a%20marketing%20project.";
+  const WHATSAPP_DISPLAY = "7992278315";
+  const WHATSAPP_URL = "https://wa.me/917992278315?text=Hello%20Prime%20Polo%2C%20I%20would%20like%20to%20discuss%20a%20marketing%20project.";
+  const LINKEDIN_URL = "https://www.linkedin.com/in/prime-polo-2b12853b6";
+  const INSTAGRAM_URL = "https://www.instagram.com/primepolo_marketing/";
 
   const BLOG_ARTICLES = [
     {
@@ -218,7 +221,7 @@
       const dock = document.createElement("aside");
       dock.className = "ds-phone-dock";
       dock.setAttribute("aria-label", "Call or WhatsApp Prime Polo");
-      dock.innerHTML = `<a class="call" href="tel:${PHONE_E164}">☎ <span>Call ${PHONE_DISPLAY}</span></a><a class="whatsapp" href="${WHATSAPP_URL}" target="_blank" rel="noopener">◉ <span>WhatsApp</span></a>`;
+      dock.innerHTML = `<a class="call" href="tel:${PHONE_E164}">☎ <span>Call ${PHONE_DISPLAY}</span></a><a class="whatsapp" href="${WHATSAPP_URL}" target="_blank" rel="noopener">◉ <span>WhatsApp ${WHATSAPP_DISPLAY}</span></a>`;
       document.body.append(dock);
     }
 
@@ -233,8 +236,22 @@
       whatsapp.href = WHATSAPP_URL;
       whatsapp.target = "_blank";
       whatsapp.rel = "noopener";
-      whatsapp.textContent = "Chat on WhatsApp";
+      whatsapp.textContent = `WhatsApp: ${WHATSAPP_DISPLAY}`;
       contactDetails.append(phone, whatsapp);
+    }
+    if (contactDetails && !contactDetails.querySelector(".ds-social-row")) {
+      const social = document.createElement("div");
+      social.className = "ds-social-row";
+      social.innerHTML = `<span>Follow Prime Polo</span><a href="${INSTAGRAM_URL}" target="_blank" rel="noopener">Instagram</a><a href="${LINKEDIN_URL}" target="_blank" rel="noopener">LinkedIn</a>`;
+      contactDetails.append(social);
+    }
+
+    const footerBrand = document.querySelector(".footer-brand");
+    if (footerBrand && !footerBrand.querySelector(".ds-footer-social")) {
+      const social = document.createElement("div");
+      social.className = "ds-footer-social";
+      social.innerHTML = `<a href="${INSTAGRAM_URL}" target="_blank" rel="noopener">Instagram</a><a href="${LINKEDIN_URL}" target="_blank" rel="noopener">LinkedIn</a><a href="${WHATSAPP_URL}" target="_blank" rel="noopener">WhatsApp ${WHATSAPP_DISPLAY}</a>`;
+      footerBrand.append(social);
     }
 
     const map = document.querySelector(".map-visual");
