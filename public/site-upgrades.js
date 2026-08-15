@@ -89,7 +89,13 @@
 
     document.querySelectorAll("img").forEach((image) => {
       const signal = `${image.alt || ""} ${image.className || ""}`.toLowerCase();
-      if (/logo|client|partner|brand-mark/.test(signal)) image.classList.add("company-logo");
+      const isPrimePoloLogo = image.classList.contains("brand-logo") || image.classList.contains("footer-logo") || /prime polo|rising with trust/.test(signal);
+      if (isPrimePoloLogo) {
+        image.classList.remove("company-logo");
+        image.classList.add("own-logo");
+      } else if (/logo|client|partner|brand-mark/.test(signal)) {
+        image.classList.add("company-logo");
+      }
     });
 
     const headerActions = document.querySelector(".header-actions");

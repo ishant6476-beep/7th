@@ -1,23 +1,8 @@
-Prime Polo recovery build: 9.2-functional-navigation-phone
+Prime Polo recovery build: 9.3-logo-background-fix
 
-Every primary navigation option now has a working internal destination:
-- Influencer -> dedicated Influencer Marketing section
-- About Us -> company story and team
-- News & Awards -> transparent news, milestones and recognition section
-- Services -> expanded service catalog
-- Clients -> featured work and case studies
-- Industry -> industry expertise
-- International -> dedicated international growth and remote-delivery section
+Logo presentation correction:
+- Prime Polo's own header and footer logos no longer receive a white tile.
+- Prime Polo logos use their original transparent/dark presentation with no added border or padding.
+- Only third-party client, partner and company logos receive white background tiles for readability on the dark theme.
 
-New generated content:
-- Influencer strategy, UGC, operations and measurement
-- 2026 company news and milestones
-- Honest recognition desk with no fabricated awards
-- Market entry, international SEO/AEO/GEO, cross-border media and remote delivery
-
-Phone connectivity:
-- Click-to-call: +91 7903946440
-- WhatsApp: +91 7903946440 with a prefilled enquiry message
-- Links are available in the header, contact section and responsive phone dock
-
-All Version 9.1 visual, service, AI, lead, authentication and dashboard functionality remains included.
+All Version 9.2 navigation, generated sections, services, phone, WhatsApp, maps, AI, forms, authentication and dashboard functionality remains included.

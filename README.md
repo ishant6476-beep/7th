@@ -8,7 +8,7 @@ This is a deployable recovery and full visual redesign of the Prime Polo website
 - Three original generated 3D visuals for the hero, integrated services and strategy sections
 - Responsive desktop and mobile layouts
 - Real Google Maps embed with an external **Open in Google Maps** action
-- White presentation tiles automatically applied to displayed company/partner/client logos
+- White presentation tiles automatically applied only to third-party company, partner and client logos; Prime Polo's own header and footer logos keep their original background
 - Dark and light themes remain available through the existing theme button
 - Founder corrected to **Saurya Kumar**
 - Professional experience updated to **5+ years**
