@@ -1,4 +1,14 @@
-/* Prime Polo-owned logo treatment: circular, with no white tile. */
+/* Prime Polo-owned logo treatment: circular, sharp and theme-aware. */
+.theme-dark .brand-logo,
+.theme-dark .footer-logo,
+.theme-dark .own-logo {
+  content: url('/images/prime-polo-logo-dark-hq.webp') !important;
+}
+.theme-light .brand-logo,
+.theme-light .footer-logo,
+.theme-light .own-logo {
+  content: url('/images/prime-polo-logo-light-hq.webp') !important;
+}
 .brand-logo,
 .footer-logo,
 .own-logo {

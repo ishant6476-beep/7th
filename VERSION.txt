@@ -1,11 +1,23 @@
-Prime Polo recovery build: 14.1-round-logo
+Prime Polo recovery build: 14.2-high-resolution-theme-logos
 
-Logo update:
-- Prime Polo's header logo is now perfectly circular
-- Prime Polo's footer logo is now perfectly circular
-- Mobile header and footer sizes remain responsive
-- Own logo keeps its original dark background with no white tile
-- Dedicated SEO, service and blog page headers use the same round logo treatment
-- Third-party company/client logos still use white readability tiles
+New professional logo assets:
+- Dark theme: prime-polo-logo-dark-hq.webp
+- Light theme: prime-polo-logo-light-hq.webp
+- High-resolution PNG masters are included for future print/export use
 
-All Version 14 contact, social, SEO, UI and application functionality remains unchanged.
+Both variants use the same:
+- Double circular border
+- Intertwined PP monogram
+- PRIME POLO wordmark
+- MARKETING AGENCY descriptor
+- Rising with Trust tagline
+- Exact proportions and professional gold treatment
+
+Theme behavior:
+- Dark theme automatically uses the obsidian-black and metallic-gold logo
+- Light theme automatically uses the ivory-white and metallic-gold/charcoal logo
+- Header, footer, service, SEO and blog pages switch automatically
+- Logos remain perfectly circular and sharp
+- Optimized 512px WebP files keep browser downloads small
+
+All other Version 14.1 functionality and the restored UI remain unchanged.
