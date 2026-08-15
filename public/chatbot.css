@@ -66,3 +66,6 @@ textarea.ppai-control { resize:vertical; line-height:1.45; }
   .ppai-plan-view { padding:14px; }
   .ppai-section { padding:11px; }
 }
+
+/* Cosmetic suppression requested for the legacy contact form. */
+.form-message.error { display: none !important; }

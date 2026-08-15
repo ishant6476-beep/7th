@@ -92,19 +92,34 @@ export default async function handler(req, res) {
     return res.status(503).json({ error: "Profile storage is not configured. Add the Supabase server variables in Vercel, then redeploy." });
   }
 
-  const id = randomUUID();
+  const referenceId = randomUUID();
+  const company = clean(details.company_name || details.agency_name || details.creator_name, 300);
+  const challenge = clean(details.company_challenge || details.agency_challenge || details.creator_challenge, 2000);
+  const summary = [
+    `Profile: ${profileType}`,
+    `Objectives: ${clean(details.objectives, 2000)}`,
+    challenge ? `Primary challenge: ${challenge}` : "",
+    `Success metrics: ${clean(details.success_metrics, 2000)}`,
+    clean(details.additional_notes) ? `Additional notes: ${clean(details.additional_notes, 2000)}` : "",
+  ].filter(Boolean).join("\n\n");
+
+  // Store chatbot profiles in the existing public.leads table so website
+  // contact leads and detailed intake profiles are visible in one place.
   const record = {
-    id,
-    profile_type: profileType,
-    full_name: fullName,
+    name: fullName,
     email,
     phone,
+    company,
+    service: services.join(", "),
+    budget: clean(details.monthly_budget, 100),
+    message: summary.slice(0, 6000),
+    status: "new",
+    profile_type: profileType,
     preferred_contact: clean(details.preferred_contact, 40),
     services,
-    details,
+    intake_details: details,
     consent: true,
-    status: "new",
-    source: "website_chatbot",
+    source: "chatbot_intake",
     user_agent: clean(req.headers["user-agent"], 500),
   };
 
@@ -118,7 +133,7 @@ export default async function handler(req, res) {
     // Authorization: Bearer. Legacy service_role JWTs require that header.
     if (!serviceKey.startsWith("sb_secret_")) headers.Authorization = `Bearer ${serviceKey}`;
 
-    const response = await fetch(`${supabaseUrl}/rest/v1/marketing_intakes`, {
+    const response = await fetch(`${supabaseUrl}/rest/v1/leads`, {
       method: "POST",
       headers,
       body: JSON.stringify(record),
@@ -126,13 +141,13 @@ export default async function handler(req, res) {
     if (!response.ok) {
       const errorText = await response.text();
       console.error("Supabase intake insert failed", response.status, errorText.slice(0, 1000));
-      const tableMissing = response.status === 404 || /marketing_intakes|PGRST205|schema cache/i.test(errorText);
+      const tableMissing = response.status === 404 || /leads|PGRST204|PGRST205|schema cache/i.test(errorText);
       const keyRejected = response.status === 401 || response.status === 403 || /invalid.*(jwt|key)|unauthorized/i.test(errorText);
-      if (tableMissing) return res.status(503).json({ error: "The intake database table is missing. Run supabase/marketing_intakes.sql in Supabase SQL Editor." });
+      if (tableMissing) return res.status(503).json({ error: "The leads table needs the intake columns. Run supabase/leads_intake_upgrade.sql in Supabase SQL Editor." });
       if (keyRejected) return res.status(503).json({ error: "Supabase rejected the server key. Add SUPABASE_SECRET_KEY in Vercel using the sb_secret_ key, then redeploy." });
       return res.status(502).json({ error: "The database rejected this submission. Check the Vercel Function log for api/intake." });
     }
-    return res.status(201).json({ reference: `PP-${id.slice(0, 8).toUpperCase()}` });
+    return res.status(201).json({ reference: `PP-${referenceId.slice(0, 8).toUpperCase()}` });
   } catch (error) {
     console.error("Intake endpoint failure", error?.message || error);
     return res.status(502).json({ error: "We could not save your profile right now. Please try again or email info@primepolomarketing.in." });

@@ -1,15 +1,17 @@
-Prime Polo recovery build: 6.1-intake-storage-fix
+Prime Polo recovery build: 7.0-supabase-only-leads
 
-Fixes:
-- Supports current Supabase sb_secret_ server keys correctly
-- Does not send opaque sb_secret_ keys as Bearer JWTs
-- Still supports legacy service_role JWT keys
-- Returns clear errors for missing table, rejected key or missing configuration
-- Includes Influencer, Company and Agency intake profiles
-- Saves full occupation details and selected services
+Changes:
+- EmailJS removed completely, including endpoint, IDs, keys and legal references
+- Main contact form continues saving directly to public.leads
+- Influencer, Company and Agency intake profiles now also save to public.leads
+- Added leads columns: profile_type, preferred_contact, services,
+  intake_details, consent, source and user_agent
+- All selected services are stored in the services array
+- Every occupation/business answer is stored in intake_details JSON
 
-Required setup:
-1. Run supabase/marketing_intakes.sql in Supabase SQL Editor
-2. Add SUPABASE_URL and SUPABASE_SECRET_KEY in Vercel
-3. Disable Vercel Deployment Protection for preview testing, or use the production domain
-4. Redeploy
+Required database step:
+Run supabase/leads_intake_upgrade.sql once in Supabase SQL Editor.
+
+Required Vercel variables for detailed intake profiles:
+SUPABASE_URL=https://YOUR_PROJECT.supabase.co
+SUPABASE_SECRET_KEY=sb_secret_your_server_key

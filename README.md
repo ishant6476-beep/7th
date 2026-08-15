@@ -2,6 +2,14 @@
 
 This is a deployable recovery of the Prime Polo website. The unavailable original source is preserved as a self-contained snapshot in `src/site.html`. The current chatbot is plain JavaScript mounted outside React, with a secure Vercel API route.
 
+## Data flow
+
+EmailJS has been removed completely. No EmailJS endpoint, service ID, template ID, public key, package, or legal-policy reference remains in the project.
+
+- The main website contact form inserts directly into `public.leads` through the configured Supabase browser client.
+- The Influencer, Company, and Agency questionnaire posts to `/api/intake`, which validates the submission and inserts it into the same `public.leads` table through the server-only Supabase secret key.
+- No submission email is sent by this project.
+
 ## Chatbot design
 
 Provider order:
@@ -47,10 +55,10 @@ The **Get a plan** tab collects structured profiles for three visitor types:
 - Company
 - Agency
 
-It requires both email and phone/WhatsApp, records occupation/business details, allows selection from the complete service catalog, and saves everything to Supabase.
+It requires both email and phone/WhatsApp, records occupation/business details, allows selection from the complete service catalog, and saves everything to the existing `public.leads` table.
 
 1. Open **Supabase → SQL Editor**.
-2. Run `supabase/marketing_intakes.sql` once.
+2. Run `supabase/leads_intake_upgrade.sql` once. It adds the profile and service-detail columns to `public.leads` without deleting existing leads.
 3. In **Vercel → Settings → Environment Variables**, add:
 
 ```env
@@ -63,9 +71,15 @@ Use the current **Secret key** from Supabase → Project Settings → API Keys. 
 4. Apply the variables to Production, Preview, and Development.
 5. Redeploy.
 
-Never expose either server key through a `VITE_` variable or place it in browser code. The `marketing_intakes` table has Row Level Security enabled and is not accessible to anonymous browser clients; only the server endpoint inserts profiles.
+Never expose either server key through a `VITE_` variable or place it in browser code. Row Level Security remains enabled. Browser visitors can submit leads but cannot read, update, or delete the table.
 
-Saved submissions are available in **Supabase → Table Editor → marketing_intakes**. Common columns are searchable directly, and occupation details are stored in the `details` JSON column.
+All submissions are available in **Supabase → Table Editor → leads**:
+
+- Original contact-form fields remain in `name`, `email`, `phone`, `company`, `service`, `budget`, and `message`.
+- Questionnaire type is in `profile_type`.
+- All selected services are in the `services` array.
+- Every Influencer, Company, or Agency answer is in `intake_details` as structured JSON.
+- `source` distinguishes `website_contact` from `chatbot_intake`.
 
 ## Deploy
 
@@ -91,8 +105,8 @@ npm run dev
 - `public/chatbot.js` — standalone chatbot interface
 - `public/chatbot.css` — isolated chatbot styles
 - `api/chat.js` — Groq/Gemini/knowledge-base server endpoint
-- `api/intake.js` — validated server endpoint for saving visitor profiles
-- `supabase/marketing_intakes.sql` — private intake table and indexes
+- `api/intake.js` — validated server endpoint that saves visitor profiles to `public.leads`
+- `supabase/leads_intake_upgrade.sql` — safely adds profile, service and JSON detail columns to `public.leads`
 - `public/images/` — website images
 - `scripts/build.mjs` — production build
 - `.env.example` — environment template
