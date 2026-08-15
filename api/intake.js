@@ -150,6 +150,6 @@ export default async function handler(req, res) {
     return res.status(201).json({ reference: `PP-${referenceId.slice(0, 8).toUpperCase()}` });
   } catch (error) {
     console.error("Intake endpoint failure", error?.message || error);
-    return res.status(502).json({ error: "We could not save your profile right now. Please try again or email primepolomarketing@gmail.com." });
+    return res.status(502).json({ error: "We could not save your profile right now. Please try again or email info@primepolomarketing.in." });
   }
 }

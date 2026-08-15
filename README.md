@@ -1,12 +1,12 @@
 # Prime Polo — Performance Agency Redesign
 
-This is a deployable recovery and full visual redesign of the Prime Polo website. The unavailable original source is preserved as a self-contained snapshot in `src/site.html`. The interface now uses Prime Polo's original **Obsidian Aurora** signature theme: deep cinematic black, luminous violet, refined gold, electric cyan, layered glass and subtle cosmic detail. Prime Polo branding, content, both themes, the theme toggle, authentication, dashboard, chatbot and Supabase workflows are preserved.
+This is a deployable recovery and full visual redesign of the Prime Polo website. The earlier black-and-yellow performance-agency interface has been restored, including its bold editorial typography, structured dark panels and bright yellow calls to action. Prime Polo branding, content, both themes, the theme toggle, authentication, dashboard, chatbot and Supabase workflows are preserved.
 
-## Signature visual system
+## Restored visual system
 
-- Cinematic Obsidian Aurora palette with violet, gold and cyan light accents
-- Editorial typography, luminous gradient headlines and restrained glass surfaces
-- Floating glass navigation, dimensional cards and carefully layered ambient backgrounds
+- Black-and-yellow performance-agency design
+- Bold editorial typography and structured service panels
+- Original responsive header, cards and calls to action
 - Three original generated 3D visuals for the hero, integrated services and strategy sections
 - Responsive desktop and mobile layouts
 - Real Google Maps embed with an external **Open in Google Maps** action
@@ -15,7 +15,8 @@ This is a deployable recovery and full visual redesign of the Prime Polo website
 - Founder corrected to **Saurya Kumar**
 - Professional experience updated to **5+ years**
 - Business location updated to **Vikas Nagar, Bihta, Bihar 801103**
-- Primary contact email updated to **primepolomarketing@gmail.com**
+- General enquiries and growth briefs use **info@primepolomarketing.in**
+- Account, privacy, rights and technical assistance use **support@primepolomarketing.in**
 - Business formation year updated to **2026**
 - Main navigation updated to **Influencer, About Us, Blog, Services, Clients, Industry, International**, with a working destination and original content for every option
 - Added dedicated Influencer Marketing, Blog, and International Growth sections

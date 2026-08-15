@@ -1,25 +1,25 @@
-Prime Polo recovery build: 12.0-obsidian-aurora-theme
+Prime Polo recovery build: 13.0-restored-ui-business-emails
 
-Visual theme only:
-- New original Obsidian Aurora signature design
-- Cinematic near-black and deep-violet surfaces
-- Refined gold, luminous violet and electric-cyan accents
-- Floating glass navigation with subtle depth
-- Editorial gradient hero typography
-- Layered ambient light, orbital detail and restrained glow
-- Dimensional capability, service, industry and generated-content cards
-- Restyled case studies, process, testimonials, calculator, FAQ, contact and footer
-- Matching visual treatment for indexable SEO/service/blog pages
-- Dedicated light-mode interpretation using porcelain surfaces and royal-violet accents
-- Responsive mobile composition and reduced-motion support
+Restored:
+- The previous black-and-yellow performance-agency UI from Version 11
+- Previous header, hero, cards, service panels, generated sections, contact design and footer
+- Previous matching design for dedicated SEO, service and blog pages
+
+Email routing updated:
+- info@primepolomarketing.in
+  General enquiries, growth briefs, chatbot guidance, proposals and public business contact
+
+- support@primepolomarketing.in
+  Account assistance, privacy questions, data-rights requests, terms questions and technical support
+
+Removed:
+- primepolomarketing@gmail.com references
+- The later Obsidian Aurora theme override
 
 Unchanged:
-- All website copy and business information
-- Navigation destinations and blog content
-- Service catalog and SEO implementation
-- Google Maps, phone and WhatsApp actions
-- Dark/light theme toggle behavior
-- Authentication and mandatory user profile gate
-- Dashboard and admin CRM
-- Chatbot and AI providers
-- Supabase leads, profiles and database APIs
+- Website content and navigation
+- SEO pages and sitemap
+- Services and blog content
+- Authentication, dashboard and mandatory profile onboarding
+- Chatbot and Supabase data workflows
+- Phone, WhatsApp and Google Maps
