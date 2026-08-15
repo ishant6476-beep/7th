@@ -1,11 +1,13 @@
-Prime Polo recovery build: 4.0-trained-chatbot
+Prime Polo recovery build: 5.0-groq-ai
 
 This version:
-- Uses a standalone chatbot outside the React root
-- Includes a detailed Prime Polo knowledge base with topic-specific answers
+- Uses GroqCloud Llama 3.3 70B as the primary AI provider
+- Supports Gemini as an optional secondary provider
+- Requests fuller 70-150 word answers with up to 500 completion tokens
+- Automatically expands unusually short substantive AI answers
+- Includes a detailed offline Prime Polo knowledge base
 - Uses info@primepolomarketing.in throughout
-- Works in knowledge-base mode even if GEMINI_API_KEY is not configured
-- Uses Gemini for flexible conversational answers when the key is configured
+- Keeps all API keys server-side
 
 Expected deployed files:
 - /chatbot.js

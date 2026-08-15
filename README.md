@@ -1,58 +1,73 @@
 # Prime Polo — Recovered Site + Rebuilt AI Chatbot
 
-This project is a deployable recovery of the live Prime Polo site. The original `src` folder was not available, so the existing production application has been preserved in `src/site.html` as a self-contained source snapshot. The chatbot has been rebuilt to call a secure server-side Gemini endpoint.
+This is a deployable recovery of the Prime Polo website. The unavailable original source is preserved as a self-contained snapshot in `src/site.html`. The current chatbot is plain JavaScript mounted outside React, with a secure Vercel API route.
 
-## What was fixed
+## Chatbot design
 
-- The mobile floating chat button no longer overlaps the Send button. That overlap closed the chat and exposed the light-theme white background, which looked like a blank screen.
-- Chat requests now go to `/api/chat` instead of using only fixed keyword responses.
-- API/network/model failures are caught; the existing local business-answer system is used as a fallback, so the page never disappears or crashes.
-- The Gemini key stays in a server-only environment variable and is never shipped to the browser.
-- Input length, conversation history, output length, timeout, and basic per-IP request rate are limited.
+Provider order:
 
-## Get a free API key
+1. **GroqCloud** using Llama 3.3 70B (recommended free developer API)
+2. **Gemini** when its key is configured as a secondary provider
+3. Detailed built-in Prime Polo knowledge base if both providers are unavailable
 
-1. Open https://aistudio.google.com/apikey and create a Gemini API key.
-2. On Vercel, open **Project → Settings → Environment Variables**.
-3. Add:
+Normal AI answers can use up to 500 completion tokens. The server asks for useful 70–150 word answers and automatically supplements an unusually short substantive answer with knowledge-base information.
 
-   - `GEMINI_API_KEY` = your key
-   - `GEMINI_MODEL` = `gemini-3.5-flash` (optional; this is already the default)
+## Configure the recommended free Groq API
 
-4. Apply variables to Production, Preview, and Development.
-5. Redeploy. Environment changes do not affect a deployment that has already been built.
+1. Create an account and API key at https://console.groq.com/keys.
+2. In Vercel, open **Project → Settings → Environment Variables**.
+3. Add these variables to **Production, Preview, and Development**:
 
-Do not rename the key to `VITE_GEMINI_API_KEY`. A `VITE_` variable would expose it publicly.
+```env
+GROQ_API_KEY=gsk_your_real_key_here
+GROQ_MODEL=llama-3.3-70b-versatile
+```
 
-Free-tier availability and quotas are controlled by Google and can vary by region/account. If the quota is exhausted or a model becomes unavailable, update `GEMINI_MODEL`; the browser chatbot will still provide its local fallback answers.
+4. Save the variables.
+5. Open **Deployments**, select the latest deployment, and click **Redeploy**.
 
-## Deploy to Vercel
+Environment variables do not change a deployment that is already running. A redeploy is required.
+
+Do not name the variable `VITE_GROQ_API_KEY`. `VITE_` variables are exposed to visitors. `GROQ_API_KEY` must remain server-side.
+
+Groq controls free-tier availability and rate limits. The site automatically falls back to Gemini or its built-in knowledge base if Groq is temporarily unavailable.
+
+## Optional Gemini fallback
+
+```env
+GEMINI_API_KEY=your_google_ai_studio_key
+GEMINI_MODEL=gemini-3.5-flash
+```
+
+## Deploy
 
 ```bash
 npm install
 npm run build
 ```
 
-Push the folder to GitHub and import it into Vercel. Vercel uses `vercel.json`, builds `dist/`, and deploys `api/chat.js` as a serverless function.
+Push the folder to GitHub and import it into Vercel. Vercel builds `dist/` and deploys `api/chat.js` as a serverless function.
 
-For local development with the API route:
+For local API development:
 
 ```bash
 cp .env.example .env.local
-# Put your real key in .env.local
+# Add your real GROQ_API_KEY to .env.local
 npm install
 npm run dev
 ```
 
 ## Project structure
 
-- `src/site.html` — complete self-contained website snapshot and rebuilt chatbot client
-- `api/chat.js` — secure Gemini serverless endpoint
-- `public/images/` — site images
-- `scripts/build.mjs` — deterministic production build
-- `.env.example` — environment variable template
-- `vercel.json` — API/static routing and security headers
+- `src/site.html` — self-contained recovered website
+- `public/chatbot.js` — standalone chatbot interface
+- `public/chatbot.css` — isolated chatbot styles
+- `api/chat.js` — Groq/Gemini/knowledge-base server endpoint
+- `public/images/` — website images
+- `scripts/build.mjs` — production build
+- `.env.example` — environment template
+- `vercel.json` — routing and security headers
 
-## Important
+## Security
 
-The Gemini key must remain secret. Never commit `.env.local`, and never place the key directly inside `site.html` or browser JavaScript.
+Never commit `.env.local`, put an API key in `site.html`, or expose a key through a `VITE_` variable.
