@@ -1,8 +1,32 @@
-Prime Polo recovery build: 9.3-logo-background-fix
+Prime Polo recovery build: 10.0-blog-service-fix
 
-Logo presentation correction:
-- Prime Polo's own header and footer logos no longer receive a white tile.
-- Prime Polo logos use their original transparent/dark presentation with no added border or padding.
-- Only third-party client, partner and company logos receive white background tiles for readability on the dark theme.
+Live-site audit findings and fixes:
 
-All Version 9.2 navigation, generated sections, services, phone, WhatsApp, maps, AI, forms, authentication and dashboard functionality remains included.
+1. Broken Services navigation
+- Cause: the rendered services section had no #services ID.
+- Fixed by assigning the correct ID after the SPA mounts.
+- Verified that clicking Services now lands at the section with the header offset.
+
+2. Service cards were not useful
+- Every service card now opens a responsive detail panel.
+- Panels include the service description, specific deliverables and a contact CTA.
+- View All Services remains available for the complete practice index.
+
+3. News & Awards removed
+- Header navigation now uses Blog.
+- Footer Resources now includes Blog.
+- The previous generated News & Awards section is no longer created.
+
+4. Functional blog added
+- SEO, AEO & GEO in 2026
+- A Better Influencer Brief
+- Measure Paid Media Honestly
+- The Conversion-Ready Website
+- Each card opens a complete readable article in an accessible modal.
+
+Validation completed:
+- Desktop and mobile
+- Blog and Services navigation
+- Four blog article panels
+- Twelve service detail panels
+- No browser page errors
