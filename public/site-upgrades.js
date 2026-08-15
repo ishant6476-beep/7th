@@ -7,21 +7,25 @@
   const BLOG_ARTICLES = [
     {
       title: "SEO, AEO & GEO in 2026",
+      url: "/blog/seo-aeo-geo-2026",
       eyebrow: "Search Strategy",
       body: `<p>Search visibility now spans three connected surfaces. SEO earns discoverability in traditional results. AEO structures clear answers for featured snippets and answer engines. GEO helps credible brand information appear in generative AI responses.</p><h4>Start with one evidence base</h4><p>Do not build three disconnected content programs. Begin with customer questions, commercial topics, first-party expertise and verifiable proof. Build technically accessible pages around those themes, then structure concise answers, definitions, comparisons and supporting data that machines and people can interpret.</p><h4>Measure business movement</h4><p>Track qualified organic traffic, assisted conversions, branded demand, citations, lead quality and revenue—not rankings alone. Strong search programs combine technical health, useful content, authority and conversion design.</p>`
     },
     {
       title: "A better influencer brief",
+      url: "/blog/better-influencer-brief",
       eyebrow: "Influencer Marketing",
       body: `<p>A creator brief should create clarity without removing the creator's voice. It needs one commercial objective, a precise audience, the product truth, non-negotiable claims, required deliverables, usage rights, timing and a measurement plan.</p><h4>Choose fit before reach</h4><p>Review audience relevance, content quality, historical consistency, engagement credibility and brand safety before follower count. The strongest creator is the one whose audience has a believable reason to care.</p><h4>Plan distribution early</h4><p>Decide whether content will remain organic, be whitelisted for paid media or be adapted across brand channels. Rights, formats and hooks should be agreed before production, not after a strong asset appears.</p>`
     },
     {
       title: "Measure paid media honestly",
+      url: "/blog/paid-media-measurement",
       eyebrow: "Performance Marketing",
       body: `<p>Platform-reported return is useful, but it is not the complete commercial truth. A reliable measurement system connects campaign data to analytics, CRM stages, sales outcomes and contribution margin.</p><h4>Use a metric hierarchy</h4><p>Begin with business outcomes such as profitable revenue or qualified pipeline. Then monitor CAC, conversion rate and lead quality. Use clicks, CPM and engagement as diagnostic signals—not final success metrics.</p><h4>Test incrementally</h4><p>Document the hypothesis, audience, offer, creative variable and decision threshold before launch. Hold enough variables constant to learn something, and scale only when performance remains sound beyond the platform dashboard.</p>`
     },
     {
       title: "The conversion-ready website",
+      url: "/blog/conversion-ready-website",
       eyebrow: "Web & CRO",
       body: `<p>A conversion-ready website answers five questions quickly: what is offered, who it is for, why it is different, what proof exists and what the visitor should do next.</p><h4>Remove friction before adding effects</h4><p>Prioritize message hierarchy, mobile speed, readable layouts, focused calls to action and trustworthy proof. Every field, animation and navigation choice should help the user decide rather than compete for attention.</p><h4>Instrument the journey</h4><p>Track meaningful actions, validate forms, preserve campaign attribution and review where qualified visitors stop. Conversion optimization is a continuous system of evidence-led improvements, not a one-time redesign.</p>`
     }
@@ -40,6 +44,21 @@
     "Online Reputation Management": ["Review monitoring", "Sentiment analysis", "Response workflows", "Search reputation", "Crisis support", "Brand-safety reporting"],
     "Content Marketing & Video": ["Editorial strategy", "Copywriting", "Reels and social video", "Brand films", "Distribution", "Performance analysis"],
     "Branding & Design": ["Brand strategy", "Naming and messaging", "Visual identity", "Packaging and collateral", "Design systems", "Launch support"]
+  };
+
+  const SERVICE_URLS = {
+    "Creative & Communication": "/services#creative-communication",
+    "Search Engine Marketing": "/seo",
+    "Full-Funnel Digital Marketing": "/services#full-funnel-digital-marketing",
+    "Website & Web App Development": "/website-development",
+    "Mobile Application Development": "/services#mobile-application-development",
+    "Ad Management": "/performance-marketing",
+    "UGC Content Creation": "/influencer-marketing#ugc",
+    "Social Media Marketing": "/social-media-marketing",
+    "Influencer Marketing": "/influencer-marketing",
+    "Online Reputation Management": "/services#online-reputation-management",
+    "Content Marketing & Video": "/services#content-marketing-video",
+    "Branding & Design": "/services#branding-design"
   };
 
   function openContentModal(title, eyebrow, html) {
@@ -94,13 +113,9 @@
         const features = SERVICE_DETAILS[title] || ["Discovery and strategy", "Senior-led execution", "Measurement and optimization", "Clear reporting"];
         const link = card.querySelector("a");
         if (link) {
-          link.href = `#services`;
+          link.href = SERVICE_URLS[title] || "/services";
           link.textContent = "Explore service →";
-          link.addEventListener("click", event => {
-            event.preventDefault();
-            event.stopPropagation();
-            openContentModal(title, "Prime Polo Service", `<p>${description}</p><h4>What we can provide</h4><ul>${features.map(item => `<li>${item}</li>`).join("")}</ul>`);
-          });
+          link.setAttribute("aria-label", `Explore ${title}`);
         }
       });
       const catalog = servicesSection.querySelector(".service-catalog");
@@ -144,19 +159,20 @@
         article.setAttribute("role", "button");
         article.setAttribute("aria-label", `Read ${article.querySelector("h3")?.textContent || "blog article"}`);
         article.dataset.article = String(index);
-        const read = document.createElement("button");
-        read.type = "button";
+        const read = document.createElement("a");
         read.className = "ds-read-article";
+        read.href = BLOG_ARTICLES[index]?.url || "/blog";
         read.textContent = "Read article →";
         article.append(read);
       });
       blog.querySelectorAll(".ds-blog-card").forEach(card => {
-        const open = () => {
+        const open = event => {
+          if (event?.target?.closest("a")) return;
           const article = BLOG_ARTICLES[Number(card.dataset.article)];
-          if (article) openContentModal(article.title, article.eyebrow, article.body);
+          if (article?.url) window.location.href = article.url;
         };
         card.addEventListener("click", open);
-        card.addEventListener("keydown", event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); open(); } });
+        card.addEventListener("keydown", event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); open(event); } });
       });
       main.insertBefore(blog, resultsSection);
     }

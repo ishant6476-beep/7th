@@ -132,6 +132,25 @@ SUPABASE_URL=https://YOUR_PROJECT.supabase.co
 SUPABASE_SECRET_KEY=sb_secret_your_server_key
 ```
 
+## SEO implementation
+
+The production build generates dedicated, indexable pages for:
+
+- `/services`
+- `/seo`
+- `/influencer-marketing`
+- `/social-media-marketing`
+- `/performance-marketing`
+- `/website-development`
+- `/blog`
+- Four individual `/blog/...` article URLs
+
+Each page includes a unique title, meta description, canonical URL, Open Graph/Twitter metadata, one H1, internal links, responsive content and JSON-LD. Structured data includes LocalBusiness, WebSite, BreadcrumbList, Service, Article and FAQPage where relevant.
+
+The build also regenerates `sitemap.xml` with every indexable URL and updates `robots.txt` to keep `/dashboard`, `/admin` and `/api/` out of search results.
+
+After deployment, submit `https://primepolomarketing.in/sitemap.xml` in Google Search Console and Bing Webmaster Tools. Search-engine submission and Google Business Profile verification require owner access and cannot be completed by the codebase itself.
+
 ## Deploy
 
 ```bash

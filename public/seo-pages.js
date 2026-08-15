@@ -1,0 +1,1 @@
+(()=>{const r=document.documentElement,k='prime-polo-theme';const apply=t=>{r.classList.toggle('light',t==='light');localStorage.setItem(k,t)};apply(localStorage.getItem(k)||'dark');document.querySelector('.theme')?.addEventListener('click',()=>apply(r.classList.contains('light')?'dark':'light'));})();

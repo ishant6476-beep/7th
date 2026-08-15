@@ -1,32 +1,41 @@
-Prime Polo recovery build: 10.0-blog-service-fix
+Prime Polo recovery build: 11.0-seo-expansion
 
-Live-site audit findings and fixes:
+Indexable SEO pages generated at build time:
+- /services
+- /seo
+- /influencer-marketing
+- /social-media-marketing
+- /performance-marketing
+- /website-development
+- /blog
+- /blog/seo-aeo-geo-2026
+- /blog/better-influencer-brief
+- /blog/paid-media-measurement
+- /blog/conversion-ready-website
 
-1. Broken Services navigation
-- Cause: the rendered services section had no #services ID.
-- Fixed by assigning the correct ID after the SPA mounts.
-- Verified that clicking Services now lands at the section with the header offset.
+On-page and technical SEO:
+- Unique titles and meta descriptions
+- Canonical URLs
+- Open Graph and Twitter metadata
+- One semantic H1 per page
+- Internal navigation and related content links
+- Responsive mobile design and theme toggle
+- LocalBusiness, WebSite and BreadcrumbList schema
+- Service schema on service pages
+- Article schema on blog articles
+- FAQPage schema on relevant pages
+- Expanded homepage LocalBusiness and FAQ schema
+- XML sitemap with all 14 indexable URLs
+- Robots rules blocking dashboard, admin and API routes
 
-2. Service cards were not useful
-- Every service card now opens a responsive detail panel.
-- Panels include the service description, specific deliverables and a contact CTA.
-- View All Services remains available for the complete practice index.
+Functional integration:
+- Homepage service cards link to dedicated landing pages
+- Homepage blog cards link to dedicated article URLs
+- Vercel rewrites serve every clean URL directly
+- Desktop and mobile browser validation completed with no page errors
 
-3. News & Awards removed
-- Header navigation now uses Blog.
-- Footer Resources now includes Blog.
-- The previous generated News & Awards section is no longer created.
-
-4. Functional blog added
-- SEO, AEO & GEO in 2026
-- A Better Influencer Brief
-- Measure Paid Media Honestly
-- The Conversion-Ready Website
-- Each card opens a complete readable article in an accessible modal.
-
-Validation completed:
-- Desktop and mobile
-- Blog and Services navigation
-- Four blog article panels
-- Twelve service detail panels
-- No browser page errors
+External owner actions still required after deployment:
+- Submit sitemap in Google Search Console
+- Submit sitemap in Bing Webmaster Tools
+- Verify and optimize Google Business Profile
+- Continue publishing original content and earning legitimate backlinks
