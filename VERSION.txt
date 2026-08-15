@@ -1,41 +1,25 @@
-Prime Polo recovery build: 11.0-seo-expansion
+Prime Polo recovery build: 12.0-obsidian-aurora-theme
 
-Indexable SEO pages generated at build time:
-- /services
-- /seo
-- /influencer-marketing
-- /social-media-marketing
-- /performance-marketing
-- /website-development
-- /blog
-- /blog/seo-aeo-geo-2026
-- /blog/better-influencer-brief
-- /blog/paid-media-measurement
-- /blog/conversion-ready-website
+Visual theme only:
+- New original Obsidian Aurora signature design
+- Cinematic near-black and deep-violet surfaces
+- Refined gold, luminous violet and electric-cyan accents
+- Floating glass navigation with subtle depth
+- Editorial gradient hero typography
+- Layered ambient light, orbital detail and restrained glow
+- Dimensional capability, service, industry and generated-content cards
+- Restyled case studies, process, testimonials, calculator, FAQ, contact and footer
+- Matching visual treatment for indexable SEO/service/blog pages
+- Dedicated light-mode interpretation using porcelain surfaces and royal-violet accents
+- Responsive mobile composition and reduced-motion support
 
-On-page and technical SEO:
-- Unique titles and meta descriptions
-- Canonical URLs
-- Open Graph and Twitter metadata
-- One semantic H1 per page
-- Internal navigation and related content links
-- Responsive mobile design and theme toggle
-- LocalBusiness, WebSite and BreadcrumbList schema
-- Service schema on service pages
-- Article schema on blog articles
-- FAQPage schema on relevant pages
-- Expanded homepage LocalBusiness and FAQ schema
-- XML sitemap with all 14 indexable URLs
-- Robots rules blocking dashboard, admin and API routes
-
-Functional integration:
-- Homepage service cards link to dedicated landing pages
-- Homepage blog cards link to dedicated article URLs
-- Vercel rewrites serve every clean URL directly
-- Desktop and mobile browser validation completed with no page errors
-
-External owner actions still required after deployment:
-- Submit sitemap in Google Search Console
-- Submit sitemap in Bing Webmaster Tools
-- Verify and optimize Google Business Profile
-- Continue publishing original content and earning legitimate backlinks
+Unchanged:
+- All website copy and business information
+- Navigation destinations and blog content
+- Service catalog and SEO implementation
+- Google Maps, phone and WhatsApp actions
+- Dark/light theme toggle behavior
+- Authentication and mandatory user profile gate
+- Dashboard and admin CRM
+- Chatbot and AI providers
+- Supabase leads, profiles and database APIs

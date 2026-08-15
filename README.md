@@ -1,10 +1,12 @@
 # Prime Polo — Performance Agency Redesign
 
-This is a deployable recovery and full visual redesign of the Prime Polo website. The unavailable original source is preserved as a self-contained snapshot in `src/site.html`. The interface now uses an original black, cream and yellow performance-agency design inspired by contemporary Indian agency websites, while preserving Prime Polo branding, both themes, the theme toggle, authentication, dashboard, chatbot and Supabase workflows.
+This is a deployable recovery and full visual redesign of the Prime Polo website. The unavailable original source is preserved as a self-contained snapshot in `src/site.html`. The interface now uses Prime Polo's original **Obsidian Aurora** signature theme: deep cinematic black, luminous violet, refined gold, electric cyan, layered glass and subtle cosmic detail. Prime Polo branding, content, both themes, the theme toggle, authentication, dashboard, chatbot and Supabase workflows are preserved.
 
-## Version 9 visual system
+## Signature visual system
 
-- Bold editorial typography, yellow calls to action, black performance panels and structured service cards
+- Cinematic Obsidian Aurora palette with violet, gold and cyan light accents
+- Editorial typography, luminous gradient headlines and restrained glass surfaces
+- Floating glass navigation, dimensional cards and carefully layered ambient backgrounds
 - Three original generated 3D visuals for the hero, integrated services and strategy sections
 - Responsive desktop and mobile layouts
 - Real Google Maps embed with an external **Open in Google Maps** action
