@@ -83,13 +83,13 @@ All submissions are available in **Supabase → Table Editor → leads**:
 
 ## Configure dashboard work profiles
 
-After an authenticated user reaches `/dashboard`, users without a saved work profile are asked to choose:
+After an authenticated user reaches `/dashboard`, the dashboard is locked until a complete work profile exists. First-time users must choose:
 
 - Company
 - Influencer
 - Other
 
-The form then collects contact details, profile-specific work information, links, platforms, goals, challenges, and services of interest. Existing users can reopen **Work profile** from the dashboard and update their answers.
+The setup cannot be closed or skipped. The dashboard becomes visible only after the server validates and saves all required contact details, profile-specific work information, links/platforms, goals, challenges, and at least one service of interest. Existing users with a completed profile enter normally and can reopen **Work profile** to update their answers.
 
 Run this once in **Supabase → SQL Editor**:
 

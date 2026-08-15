@@ -1,26 +1,16 @@
-Prime Polo recovery build: 8.0-dashboard-work-profiles
+Prime Polo recovery build: 8.1-mandatory-profile-gate
 
-New authenticated dashboard onboarding:
-- Company
-- Influencer
-- Other
+Mandatory dashboard gate:
+- Authenticated users cannot see or interact with the dashboard until a complete work profile is saved.
+- The setup modal cannot be closed or skipped for first-time users.
+- Users must select Company, Influencer or Other.
+- Required contact and profession fields are validated by both browser and server.
+- Influencers must select a platform; all users must select at least one service.
+- Only server-confirmed profiles with completed_at unlock the dashboard.
+- If profile storage is misconfigured, access stays locked and a setup error with Retry is shown.
+- After successful save, the dashboard unlocks automatically.
 
-Company profiles collect company, role, industry, business model, size, website,
-location, markets, products/services, customers, marketing activity, goals and challenges.
-
-Influencer profiles collect creator name, username, platforms (YouTube, Instagram
-and others), channel/profile links, website, niche, audience, reach, languages,
-formats, experience, collaborations, goals and challenges.
-
-Other profiles collect occupation, organization, work category/description,
-website, portfolio/social links, experience, location/markets, audience/customers,
-goals, challenges and additional free-form details.
-
-Every type also collects full name, authenticated email, required phone/WhatsApp,
-location, preferred contact method and services of interest.
-
-Required database step:
-Run supabase/user_work_profiles.sql once in Supabase SQL Editor.
-
-Profiles are stored in public.user_work_profiles and linked to auth.users with
-ON DELETE CASCADE.
+Required setup:
+1. Run supabase/user_work_profiles.sql in Supabase SQL Editor.
+2. Configure SUPABASE_URL and SUPABASE_SECRET_KEY in Vercel.
+3. Redeploy.

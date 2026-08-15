@@ -6,6 +6,14 @@ const REQUIRED = {
   other:["full_name","email","phone","location","preferred_contact","occupation","work_category","work_description","location_markets","work_goal","work_challenge","extra_details"],
 };
 function clean(v,max=2000){return typeof v==="string"?v.trim().slice(0,max):""}
+function isCompleteProfile(profile){
+  if(!profile?.completed_at||!TYPES.has(profile.profile_type)||!profile.profile_data)return false;
+  const data=profile.profile_data;
+  if(!REQUIRED[profile.profile_type].every(field=>Boolean(data[field])))return false;
+  if(!Array.isArray(data.services_needed)||!data.services_needed.length)return false;
+  if(profile.profile_type==="influencer"&&(!Array.isArray(data.platforms)||!data.platforms.length))return false;
+  return true;
+}
 function serverHeaders(key){const h={apikey:key,"Content-Type":"application/json"};if(!key.startsWith("sb_secret_"))h.Authorization=`Bearer ${key}`;return h}
 async function authenticate(req,url,key){
   const auth=clean(req.headers.authorization,5000);if(!auth.startsWith("Bearer "))return null;
@@ -24,7 +32,7 @@ export default async function handler(req,res){
     if(req.method==="GET"){
       const response=await fetch(`${url}/rest/v1/user_work_profiles?user_id=eq.${encodeURIComponent(user.id)}&select=profile_type,profile_data,completed_at,updated_at&limit=1`,{headers});
       if(!response.ok){const text=await response.text();console.error("Profile GET failed",response.status,text);return res.status(502).json({error:"Could not load work profile."})}
-      const rows=await response.json();return res.status(200).json({profile:rows[0]||null});
+      const rows=await response.json();const profile=rows[0]||null;return res.status(200).json({profile:isCompleteProfile(profile)?profile:null});
     }
     const type=clean(req.body?.profile_type,30).toLowerCase();if(!TYPES.has(type))return res.status(400).json({error:"Choose Company, Influencer or Other."});
     const raw=req.body?.profile_data&&typeof req.body.profile_data==="object"&&!Array.isArray(req.body.profile_data)?req.body.profile_data:{};

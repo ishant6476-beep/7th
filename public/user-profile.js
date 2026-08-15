@@ -87,6 +87,19 @@
     return location.pathname === "/dashboard" || location.hash.startsWith("#/dashboard");
   }
 
+  function lockDashboard() {
+    if (onDashboard()) document.documentElement.classList.add("ppup-dashboard-locked");
+  }
+
+  function unlockDashboard() {
+    document.documentElement.classList.remove("ppup-dashboard-locked");
+  }
+
+  // Fail closed on the dashboard route. Unauthenticated visitors are unlocked
+  // below so they can see the login/signup form; authenticated users remain
+  // locked until a completed work profile is confirmed by the server.
+  if (onDashboard()) lockDashboard();
+
   function makeField([name, title, type, required, options], value) {
     const label = el("label", "ppup-field");
     label.append(el("span", "", `${title}${required ? " *" : ""}`));
@@ -135,26 +148,36 @@
   let initializedForUser = null;
 
   async function initialize() {
-    if (!onDashboard()) return;
+    if (!onDashboard()) {
+      unlockDashboard();
+      return;
+    }
     const session = getSession();
-    if (!session || initializedForUser === session.user.id) return;
+    if (!session) {
+      // No authenticated session: expose only the existing login/signup page.
+      unlockDashboard();
+      return;
+    }
+    if (initializedForUser === session.user.id) return;
     initializedForUser = session.user.id;
+    lockDashboard();
 
     let existing = null;
     try {
       const response = await fetch("/api/user-profile", { headers: { Authorization: `Bearer ${session.access_token}` } });
-      if (!response.ok) throw new Error("Profile service unavailable");
-      existing = (await response.json()).profile || null;
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(result.error || "Profile service unavailable");
+      existing = result.profile || null;
     } catch (error) {
       console.warn("Work profile could not be loaded", error);
-      initializedForUser = null;
+      buildInterface(session, null, error.message || "Profile service unavailable");
       return;
     }
 
-    buildInterface(session, existing);
+    buildInterface(session, existing, null);
   }
 
-  function buildInterface(session, existing) {
+  function buildInterface(session, existing, loadError) {
     document.querySelectorAll(".ppup-root").forEach((node) => node.remove());
     const root = el("div", "ppup-root");
     const reopen = el("button", "ppup-reopen", "Work profile");
@@ -165,6 +188,7 @@
     header.append(el("div", "", "Prime Polo profile"));
     const close = el("button", "", "×");
     close.type = "button";
+    close.setAttribute("aria-label", "Close work profile");
     header.append(close);
     const body = el("div", "ppup-body");
     modal.append(header, body);
@@ -173,9 +197,40 @@
     document.body.append(root);
 
     function open() { overlay.hidden = false; }
-    function hide() { overlay.hidden = true; }
+    function hide() {
+      // A first-time profile is mandatory. The modal can close only after a
+      // completed profile has been saved and confirmed by the API.
+      if (!existing) return;
+      overlay.hidden = true;
+    }
     close.addEventListener("click", hide);
     reopen.addEventListener("click", open);
+
+    if (!existing) {
+      close.hidden = true;
+      reopen.hidden = true;
+      overlay.classList.add("mandatory");
+      lockDashboard();
+    } else {
+      unlockDashboard();
+    }
+
+    if (loadError) {
+      body.innerHTML = "";
+      const failure = el("div", "ppup-blocking-error");
+      failure.append(
+        el("small", "", "Profile setup required"),
+        el("h2", "", "Complete setup before entering your dashboard"),
+        el("p", "", loadError),
+        el("p", "", "Run supabase/user_work_profiles.sql, confirm the Supabase server variables in Vercel, redeploy, and then retry.")
+      );
+      const retry = el("button", "ppup-primary", "Retry profile check");
+      retry.type = "button";
+      retry.addEventListener("click", () => location.reload());
+      failure.append(retry);
+      body.append(failure);
+      return;
+    }
 
     function showTypes() {
       body.innerHTML = "";
@@ -274,7 +329,11 @@
           if (!response.ok) throw new Error(result.error || "Could not save profile");
           existing = result.profile;
           status.className = "ppup-status success";
-          status.textContent = "Work profile saved successfully.";
+          status.textContent = "Work profile saved successfully. Opening your dashboard…";
+          overlay.classList.remove("mandatory");
+          close.hidden = false;
+          reopen.hidden = false;
+          unlockDashboard();
           window.setTimeout(hide, 900);
         } catch (error) {
           status.className = "ppup-status error";
@@ -290,7 +349,7 @@
     if (existing) hide();
   }
 
-  window.setInterval(initialize, 1200);
+  window.setInterval(initialize, 250);
   window.addEventListener("hashchange", initialize);
   window.addEventListener("popstate", initialize);
   initialize();
