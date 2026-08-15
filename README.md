@@ -14,6 +14,9 @@ This is a deployable recovery and full visual redesign of the Prime Polo website
 - Professional experience updated to **5+ years**
 - Business location updated to **Vikas Nagar, Bihta, Bihar 801103**
 - Primary contact email updated to **primepolomarketing@gmail.com**
+- Business formation year updated to **2026**
+- Main navigation updated to **Influencer, About Us, News & Awards, Services, Clients, Industry, International**
+- Service catalog expanded to Creative & Communication; Search Engine Marketing with SEO/AEO/GEO; full-funnel Digital Marketing; Website, Web App and Mobile App Development; Ad Management; UGC Content Creation; Social Media and Influencer Marketing; Online Reputation Management; Content and Video Production; Branding and Design; Performance Marketing; Lead Generation; Marketing Automation/CRM; and Analytics/Attribution
 
 ## Data flow
 

@@ -2,11 +2,22 @@
   "use strict";
 
   const SERVICES = [
-    "Growth Strategy", "Influencer Marketing", "Social Media Marketing",
-    "Performance Advertising", "SEO", "Website Design & Development",
-    "Content & Video Production", "Brand Strategy & Identity",
-    "Lead Generation", "Marketing Automation", "CRM Integration",
-    "AI Workflows & Chatbots", "Email Marketing", "Analytics & Reporting",
+    'Creative & Communication',
+    'Search Engine Marketing (SEO, AEO & GEO)',
+    'Full-Funnel Digital Marketing',
+    'Website & Web App Development',
+    'Mobile Application Development',
+    'Ad Management',
+    'UGC Content Creation',
+    'Social Media Marketing',
+    'Influencer Marketing',
+    'Online Reputation Management',
+    'Content Marketing & Video Production',
+    'Branding & Design',
+    'Performance Marketing',
+    'Lead Generation',
+    'Marketing Automation & CRM',
+    'Analytics, Attribution & Reporting',
   ];
 
   const TYPE_FIELDS = {

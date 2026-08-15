@@ -1,5 +1,5 @@
 const TYPES = new Set(["company", "influencer", "other"]);
-const SERVICES = new Set(["Growth Strategy","Influencer Marketing","Social Media Marketing","Performance Advertising","SEO","Website Design & Development","Content & Video Production","Brand Strategy & Identity","Lead Generation","Marketing Automation","CRM Integration","AI Workflows & Chatbots","Email Marketing","Analytics & Reporting"]);
+const SERVICES = new Set(['Creative & Communication','Search Engine Marketing (SEO, AEO & GEO)','Full-Funnel Digital Marketing','Website & Web App Development','Mobile Application Development','Ad Management','UGC Content Creation','Social Media Marketing','Influencer Marketing','Online Reputation Management','Content Marketing & Video Production','Branding & Design','Performance Marketing','Lead Generation','Marketing Automation & CRM','Analytics, Attribution & Reporting']);
 const REQUIRED = {
   company:["full_name","email","phone","location","preferred_contact","company_name","job_title","industry","business_model","company_size","headquarters","markets","products_services","target_audience","company_goal","company_challenge"],
   influencer:["full_name","email","phone","location","preferred_contact","creator_name","username","niche","audience_size","audience_details","content_languages","content_formats","creator_goal","creator_challenge"],

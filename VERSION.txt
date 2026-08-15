@@ -1,22 +1,38 @@
-Prime Polo recovery build: 9.0-performance-agency-redesign
+Prime Polo recovery build: 9.1-expanded-services-navigation
 
-Full UI redesign:
-- Original black, cream and yellow performance-agency visual system
-- Existing dark/light themes and theme toggle preserved
-- Bold editorial hero and service-card layouts
-- Responsive desktop and mobile styling
-- Generated 3D hero, services and strategy imagery
-- Real Google Maps embed plus Open in Google Maps action
-- White presentation backgrounds for every displayed logo
+Navigation now follows the requested reference structure:
+- Influencer
+- About Us
+- News & Awards
+- Services
+- Clients
+- Industry
+- International
+
+Expanded service catalog:
+- Creative & Communication
+- Search Engine Marketing (SEO, AEO & GEO)
+- Full-Funnel Digital Marketing
+- Website & Web App Development
+- Mobile Application Development
+- Ad Management
+- UGC Content Creation
+- Social Media Marketing
+- Influencer Marketing
+- Online Reputation Management
+- Content Marketing & Video Production
+- Branding & Design
+- Performance Marketing
+- Lead Generation
+- Marketing Automation & CRM
+- Analytics, Attribution & Reporting
 
 Business updates:
+- Formed in 2026
 - Founder: Saurya Kumar
 - Professional experience: 5+ years
 - Location: Vikas Nagar, Bihta, Bihar 801103
 - Email: primepolomarketing@gmail.com
 
-All previous functionality remains:
-- Groq/Gemini chatbot
-- Supabase-only leads
-- Mandatory Company/Influencer/Other dashboard profile gate
-- Authentication and staff dashboard
+The expanded services are synchronized across the website, chatbot knowledge,
+lead-intake form and mandatory dashboard work-profile form.
