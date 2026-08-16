@@ -1,24 +1,11 @@
-Prime Polo recovery build: 14.4-mobile-hero-logo-fix
+Prime Polo recovery build: 14.5-blog-card-spacing-fix
 
-Screenshot issues fixed:
+Blog card issues fixed:
+- Reading category/time metadata no longer overlaps the Read Article link
+- Bottom content now has dedicated vertical space
+- Metadata is anchored consistently above the action
+- Read Article is anchored consistently at the bottom
+- Long article titles and descriptions remain clear
+- All four cards use equal alignment on desktop, tablet and mobile
 
-1. Hero poster restored
-- The hero artwork was mistakenly detected as a logo because its alt text contained “Prime Polo”.
-- Logo detection now checks actual logo classes and logo file paths only.
-- The hero uses the original 3D growth-city artwork again.
-- No logo is placed over or substituted into the hero poster.
-
-2. Duplicate lower-page logo removed
-- The duplicate footer logo image is removed.
-- Footer company name, contact details, links and social connections remain.
-
-3. Mobile layout hardened
-- Mobile browsers requesting a desktop-width viewport now receive the responsive layout.
-- Desktop navigation is replaced by the hamburger menu on touch/mobile layouts.
-- Capability, service, industry, process and contact grids collapse appropriately.
-- Headings and spacing scale correctly on narrow touch devices.
-
-4. Header logo preserved
-- The header keeps the exact original Prime Polo logo artwork.
-- The sharpened high-resolution original remains circular.
-- No AI-redesigned monogram or alternate logo is used.
+No content, navigation, branding or functionality was changed.
