@@ -83,7 +83,7 @@ for (const page of pages) {
   await mkdir(dir, { recursive: true });
   await writeFile(path.join(dir, "index.html"), page.html);
 }
-const sitemapPaths = ["/", ...pages.map(page => `/${page.dir}`), "/privacy", "/terms"];
+const sitemapPaths = ["/", "/eduex", ...pages.map(page => `/${page.dir}`), "/privacy", "/terms"];
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapPaths.map(item => `  <url><loc>${baseUrl}${item}</loc><lastmod>2026-08-16</lastmod><changefreq>${item.startsWith("/blog/") ? "monthly" : "weekly"}</changefreq><priority>${item === "/" ? "1.0" : item === "/privacy" || item === "/terms" ? "0.3" : "0.8"}</priority></url>`).join("\n")}\n</urlset>\n`;
 await writeFile(path.join(publicDir, "sitemap.xml"), sitemap);
 await writeFile(path.join(publicDir, "robots.txt"), `User-agent: *\nAllow: /\nDisallow: /dashboard\nDisallow: /admin\nDisallow: /api/\n\nSitemap: ${baseUrl}/sitemap.xml\n`);

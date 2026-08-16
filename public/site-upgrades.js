@@ -255,7 +255,7 @@
     if (footerBrand && !footerBrand.querySelector(".ds-footer-social")) {
       const social = document.createElement("div");
       social.className = "ds-footer-social";
-      social.innerHTML = `<a href="${INSTAGRAM_URL}" target="_blank" rel="noopener">Instagram</a><a href="${LINKEDIN_URL}" target="_blank" rel="noopener">LinkedIn</a><a href="${WHATSAPP_URL}" target="_blank" rel="noopener">WhatsApp ${WHATSAPP_DISPLAY}</a>`;
+      social.innerHTML = `<a href="/eduex">College Consultation</a><a href="${INSTAGRAM_URL}" target="_blank" rel="noopener">Instagram</a><a href="${LINKEDIN_URL}" target="_blank" rel="noopener">LinkedIn</a><a href="${WHATSAPP_URL}" target="_blank" rel="noopener">WhatsApp ${WHATSAPP_DISPLAY}</a>`;
       footerBrand.append(social);
     }
 

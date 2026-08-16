@@ -11,6 +11,7 @@
     { "source": "/performance-marketing", "destination": "/performance-marketing/index.html" },
     { "source": "/website-development", "destination": "/website-development/index.html" },
     { "source": "/blog", "destination": "/blog/index.html" },
+    { "source": "/eduex", "destination": "/eduex/index.html" },
     { "source": "/blog/seo-aeo-geo-2026", "destination": "/blog/seo-aeo-geo-2026/index.html" },
     { "source": "/blog/better-influencer-brief", "destination": "/blog/better-influencer-brief/index.html" },
     { "source": "/blog/paid-media-measurement", "destination": "/blog/paid-media-measurement/index.html" },
