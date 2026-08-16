@@ -41,6 +41,14 @@ create table if not exists public.college_inspections (
   user_agent text
 );
 
+-- These fields existed in the first form version but are no longer collected.
+alter table public.college_inspections alter column parent_name drop not null;
+alter table public.college_inspections alter column parent_phone drop not null;
+alter table public.college_inspections alter column city drop not null;
+alter table public.college_inspections alter column state drop not null;
+alter table public.college_inspections alter column pincode drop not null;
+alter table public.college_inspections alter column loan_interest drop not null;
+
 create index if not exists college_inspections_created_idx on public.college_inspections(created_at desc);
 create index if not exists college_inspections_status_idx on public.college_inspections(status);
 create index if not exists college_inspections_email_idx on public.college_inspections(lower(email));

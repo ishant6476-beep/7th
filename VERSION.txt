@@ -1,11 +1,33 @@
-Prime Polo recovery build: 15.1-eduex-contact-number
+Prime Polo recovery build: 15.2-eduex-mobile-simplification
 
-EduEx contact update only:
-- EduEx calling number: +91 8986284355
-- EduEx WhatsApp number: +91 8986284355
-- Click-to-call: tel:+918986284355
-- WhatsApp: https://wa.me/918986284355
-- EduEx structured data uses the same contact number
+EduEx mobile improvements:
+- Larger form sections on smartphones and touch devices
+- One-column mobile layout
+- Larger headings, labels and course options
+- Form controls use 16px text to prevent automatic mobile-browser zoom
+- Taller inputs and more touch-friendly spacing
+- Responsive handling for phones requesting a desktop-width viewport
 
-The main Prime Polo website contact numbers remain unchanged.
-All EduEx form, separate database and College Inspections CRM functionality remains unchanged.
+Removed from EduEx as requested:
+- Parent/guardian name and phone
+- Current address, city, state and PIN code
+- Complete consultation-goals section
+- Complete education-loan and scholarship section
+
+Remaining form:
+- Mandatory student contact details
+- Academic profile
+- Course availability and college preferences
+- Mandatory consent and submission
+
+WhatsApp:
+- Added a genuine round WhatsApp-style SVG icon
+- Header action says “Chat Now on 8986284355”
+- Added a floating “Chat Now on 8986284355” button
+- Both open https://wa.me/918986284355
+
+Database compatibility:
+- API no longer requires removed fields
+- Existing college_inspections tables remain compatible
+- Updated SQL makes removed columns optional when the migration is rerun
+- CRM no longer displays the removed parent, address, loan or consultation-goal fields

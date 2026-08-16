@@ -164,7 +164,7 @@ A public, no-login consultation form is available at:
 https://primepolomarketing.in/eduex
 ```
 
-It collects mandatory student/contact/guardian details, academic background, course availability preferences, college and destination choices, education-loan information, scholarship requirements and counselling goals.
+It collects mandatory student contact details, academic background, course availability preferences, college and destination choices. Guardian, address, consultation-goals, education-loan and scholarship sections were intentionally removed to keep the mobile form focused.
 
 Submissions do **not** enter `public.leads`. They are stored separately in:
 

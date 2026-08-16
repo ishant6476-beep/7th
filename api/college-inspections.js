@@ -58,19 +58,19 @@ export default async function handler(req,res){
     if(Array.isArray(value))fields[name]=value.map(v=>clean(v,200)).filter(Boolean).slice(0,40);
     else fields[name]=clean(value,name.includes("details")||name.includes("goals")||name.includes("notes")?3000:700);
   }
-  const required=["student_name","email","phone","whatsapp","parent_name","parent_phone","date_of_birth","city","state","pincode","current_qualification","institution_name","passing_year","academic_score","desired_level","preferred_course","preferred_destination","preferred_intake","study_mode","annual_budget","loan_interest","counselling_goal"];
+  const required=["student_name","email","phone","whatsapp","date_of_birth","current_qualification","institution_name","passing_year","academic_score","desired_level","preferred_course","preferred_destination","preferred_intake","study_mode","annual_budget"];
   for(const field of required)if(!fields[field])return res.status(400).json({error:`Please complete: ${field.replaceAll("_"," ")}.`});
   if(!validEmail(fields.email))return res.status(400).json({error:"Enter a valid email address."});
-  for(const field of ["phone","whatsapp","parent_phone"])if(String(fields[field]).replace(/\D/g,"").length<7)return res.status(400).json({error:`Enter a valid ${field.replaceAll("_"," ")}.`});
+  for(const field of ["phone","whatsapp"])if(String(fields[field]).replace(/\D/g,"").length<7)return res.status(400).json({error:`Enter a valid ${field.replaceAll("_"," ")}.`});
   const categories=Array.isArray(fields.course_categories)?[...new Set(fields.course_categories)].slice(0,30):[];
   if(!categories.length)return res.status(400).json({error:"Select at least one course category."});
 
   const record={
     student_name:fields.student_name,email:fields.email.toLowerCase(),phone:fields.phone,whatsapp:fields.whatsapp,
-    parent_name:fields.parent_name,parent_phone:fields.parent_phone,city:fields.city,state:fields.state,pincode:fields.pincode,
+    parent_name:fields.parent_name||"",parent_phone:fields.parent_phone||"",city:fields.city||"",state:fields.state||"",pincode:fields.pincode||"",
     current_qualification:fields.current_qualification,desired_level:fields.desired_level,preferred_course:fields.preferred_course,
     course_categories:categories,preferred_destination:fields.preferred_destination,preferred_intake:fields.preferred_intake,
-    annual_budget:fields.annual_budget,loan_interest:fields.loan_interest,expected_loan_amount:fields.expected_loan_amount||null,
+    annual_budget:fields.annual_budget,loan_interest:fields.loan_interest||"",expected_loan_amount:fields.expected_loan_amount||null,
     consent:true,status:"new",source:"eduex_public_form",form_data:fields,user_agent:clean(req.headers["user-agent"],500)
   };
   const response=await fetch(`${url}/rest/v1/college_inspections`,{method:"POST",headers:{...headers,Prefer:"return=representation"},body:JSON.stringify(record)});

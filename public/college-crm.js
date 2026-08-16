@@ -17,12 +17,12 @@
       const summary=el("button","edu-record-summary");summary.type="button";
       const student=el("div");student.append(el("strong","",record.student_name),el("small","",`${record.email} · ${record.phone}`));
       const course=el("div");course.append(el("strong","",record.preferred_course),el("small","",`${record.desired_level} · ${record.preferred_destination}`));
-      const location=el("div");location.append(el("strong","",`${record.city}, ${record.state}`),el("small","",new Date(record.created_at).toLocaleString("en-IN")));
+      const location=el("div");location.append(el("strong","",record.current_qualification||"Academic profile"),el("small","",new Date(record.created_at).toLocaleString("en-IN")));
       summary.append(student,course,location,el("span",`edu-status ${record.status}`,label(record.status)),el("b","","⌄"));
       const detail=el("div","edu-record-detail");detail.hidden=true;
       const grid=el("div","edu-detail-grid");
       const f=record.form_data||{};
-      [["WhatsApp",record.whatsapp],["Parent/guardian",`${record.parent_name} · ${record.parent_phone}`],["Qualification",record.current_qualification],["Institution",f.institution_name],["Academic score",f.academic_score],["Course categories",(record.course_categories||[]).join(", ")],["Preferred intake",record.preferred_intake],["Annual budget",record.annual_budget],["Loan interest",record.loan_interest],["Expected loan",record.expected_loan_amount],["Study mode",f.study_mode],["Hostel",f.hostel_required],["Counselling goal",f.counselling_goal],["Constraints",f.constraints]].forEach(([k,v])=>grid.append(pair(k,v)));
+      [["WhatsApp",record.whatsapp],["Qualification",record.current_qualification],["Institution",f.institution_name],["Academic score",f.academic_score],["Course categories",(record.course_categories||[]).join(", ")],["Preferred course",record.preferred_course],["Destination",record.preferred_destination],["Preferred intake",record.preferred_intake],["Annual budget",record.annual_budget],["Study mode",f.study_mode],["College type",f.college_type],["Hostel",f.hostel_required]].forEach(([k,v])=>grid.append(pair(k,v)));
       const all=el("details","edu-json");all.append(el("summary","","View all submitted details"));const pre=el("pre","",JSON.stringify(f,null,2));all.append(pre);
       const edit=el("div","edu-record-edit");
       const statusLabel=el("label");statusLabel.append(el("span","","Status"));const select=el("select");STATUS.forEach(x=>{const o=el("option","",label(x));o.value=x;o.selected=x===record.status;select.append(o)});statusLabel.append(select);
