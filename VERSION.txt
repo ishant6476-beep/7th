@@ -1,33 +1,15 @@
-Prime Polo recovery build: 15.2-eduex-mobile-simplification
+Prime Polo recovery build: 15.3-eduex-optional-labels
 
-EduEx mobile improvements:
-- Larger form sections on smartphones and touch devices
-- One-column mobile layout
-- Larger headings, labels and course options
-- Form controls use 16px text to prevent automatic mobile-browser zoom
-- Taller inputs and more touch-friendly spacing
-- Responsive handling for phones requesting a desktop-width viewport
+EduEx form clarity update:
+- Every non-mandatory question now displays “(Optional)” beside its label.
+- Mandatory questions retain the required asterisk.
+- Course-category selection remains collectively required.
 
-Removed from EduEx as requested:
-- Parent/guardian name and phone
-- Current address, city, state and PIN code
-- Complete consultation-goals section
-- Complete education-loan and scholarship section
+Optional labels added to:
+- Gender and preferred contact method
+- Board/university, stream, backlogs and gap years
+- Entrance examinations and achievements
+- Specialization and preferred locations
+- College type, hostel requirement and colleges already considered
 
-Remaining form:
-- Mandatory student contact details
-- Academic profile
-- Course availability and college preferences
-- Mandatory consent and submission
-
-WhatsApp:
-- Added a genuine round WhatsApp-style SVG icon
-- Header action says “Chat Now on 8986284355”
-- Added a floating “Chat Now on 8986284355” button
-- Both open https://wa.me/918986284355
-
-Database compatibility:
-- API no longer requires removed fields
-- Existing college_inspections tables remain compatible
-- Updated SQL makes removed columns optional when the migration is rerun
-- CRM no longer displays the removed parent, address, loan or consultation-goal fields
+No form fields, validation, database behavior or CRM functionality was otherwise changed.
