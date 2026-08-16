@@ -1,38 +1,11 @@
-Prime Polo recovery build: 15.0-eduex-college-consultation
+Prime Polo recovery build: 15.1-eduex-contact-number
 
-New public page:
-- https://primepolomarketing.in/eduex
-- No login or account required
-- Responsive Prime Polo EduEx design
-- Included in sitemap and Vercel clean-URL routing
+EduEx contact update only:
+- EduEx calling number: +91 8986284355
+- EduEx WhatsApp number: +91 8986284355
+- Click-to-call: tel:+918986284355
+- WhatsApp: https://wa.me/918986284355
+- EduEx structured data uses the same contact number
 
-Mandatory form coverage:
-- Student name, email, phone and WhatsApp
-- Parent/guardian contact
-- Date of birth and address
-- Academic qualification, institution, year and score
-- Entrance examinations, backlogs, gap years and achievements
-- 18 course categories and specific course/specialization
-- Study level, destination, intake, mode, budget, college type and hostel
-- Education-loan interest, amount, co-applicant, income, collateral and credit range
-- Scholarship and document-assistance requirements
-- Counselling goals, constraints, timeline, language and additional details
-- Consent and anti-spam protection
-
-Separate database:
-- New public.college_inspections table
-- Records never enter public.leads
-- Private RLS-protected storage through the server API
-- SQL migration: supabase/college_inspections.sql
-
-CRM integration:
-- New College Inspections tab in /admin
-- New-record badge, refresh, search and status filtering
-- Expandable complete submission details
-- Staff assignment, follow-up date, internal notes and status updates
-- Statuses cover review, contact, documents, shortlist, application, admission and closure
-
-Required setup:
-1. Run supabase/college_inspections.sql in Supabase SQL Editor.
-2. Confirm SUPABASE_URL and SUPABASE_SECRET_KEY in Vercel.
-3. Redeploy.
+The main Prime Polo website contact numbers remain unchanged.
+All EduEx form, separate database and College Inspections CRM functionality remains unchanged.
