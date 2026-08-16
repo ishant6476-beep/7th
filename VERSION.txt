@@ -1,16 +1,24 @@
-Prime Polo recovery build: 14.3-exact-logo-upscale
+Prime Polo recovery build: 14.4-mobile-hero-logo-fix
 
-Correction:
-- The redesigned AI logo variants were removed.
-- No monogram, wording, typography, layout, proportion or color was changed.
-- The website now uses the exact original Prime Polo logo artwork supplied by the owner.
+Screenshot issues fixed:
 
-Quality improvement only:
-- Empty side margins were removed without cropping the circular artwork.
-- The original was resampled at high resolution with a restrained output sharpen.
-- A 2048 × 2048 PNG master is included.
-- A lossless 768 × 768 WebP is used by the website for sharp rendering.
-- The exact same logo is used in both dark and light themes.
-- Header, footer, SEO, service and blog pages all use this identical asset.
+1. Hero poster restored
+- The hero artwork was mistakenly detected as a logo because its alt text contained “Prime Polo”.
+- Logo detection now checks actual logo classes and logo file paths only.
+- The hero uses the original 3D growth-city artwork again.
+- No logo is placed over or substituted into the hero poster.
 
-The logo remains circular. Everything else in Version 14.2 remains unchanged.
+2. Duplicate lower-page logo removed
+- The duplicate footer logo image is removed.
+- Footer company name, contact details, links and social connections remain.
+
+3. Mobile layout hardened
+- Mobile browsers requesting a desktop-width viewport now receive the responsive layout.
+- Desktop navigation is replaced by the hamburger menu on touch/mobile layouts.
+- Capability, service, industry, process and contact grids collapse appropriately.
+- Headings and spacing scale correctly on narrow touch devices.
+
+4. Header logo preserved
+- The header keeps the exact original Prime Polo logo artwork.
+- The sharpened high-resolution original remains circular.
+- No AI-redesigned monogram or alternate logo is used.

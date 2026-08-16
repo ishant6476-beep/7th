@@ -200,12 +200,17 @@
 
     document.querySelectorAll("img").forEach((image) => {
       const signal = `${image.alt || ""} ${image.className || ""}`.toLowerCase();
-      const isPrimePoloLogo = image.classList.contains("brand-logo") || image.classList.contains("footer-logo") || /prime polo|rising with trust/.test(signal);
+      const source = String(image.getAttribute("src") || "").toLowerCase();
+      // Only actual Prime Polo logo files receive logo styling. Marketing
+      // artwork whose alt text mentions Prime Polo must remain untouched.
+      const isPrimePoloLogo = image.classList.contains("brand-logo") || image.classList.contains("footer-logo") || source.includes("prime-polo-logo");
       if (isPrimePoloLogo) {
         image.classList.remove("company-logo");
         image.classList.add("own-logo");
-      } else if (/logo|client|partner|brand-mark/.test(signal)) {
-        image.classList.add("company-logo");
+      } else {
+        image.classList.remove("own-logo");
+        if (!image.classList.contains("hero-image") && /logo|client|partner|brand-mark/.test(signal)) image.classList.add("company-logo");
+        else image.classList.remove("company-logo");
       }
     });
 
