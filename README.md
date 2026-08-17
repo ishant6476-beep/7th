@@ -27,6 +27,17 @@ This is a deployable recovery and full visual redesign of the Prime Polo website
 - Connected official LinkedIn: `https://www.linkedin.com/in/prime-polo-2b12853b6`
 - Service catalog expanded to Creative & Communication; Search Engine Marketing with SEO/AEO/GEO; full-funnel Digital Marketing; Website, Web App and Mobile App Development; Ad Management; UGC Content Creation; Social Media and Influencer Marketing; Online Reputation Management; Content and Video Production; Branding and Design; Performance Marketing; Lead Generation; Marketing Automation/CRM; and Analytics/Attribution
 
+## Expanded editorial and portfolio sections
+
+The homepage includes additional original content inspired by modern agency publishing patterns without copying another company's claims or client list:
+
+- Channels and ecosystems strip for Google Ads, Meta, Instagram, LinkedIn, YouTube, Shopify, WordPress, HubSpot and GA4
+- Interactive four-project creative concept showcase
+- Original generated imagery for branding, social campaigns, web analytics and creator production
+- Studio journal with brand-craft, creator-production and measurement stories
+- Free growth-audit call-to-action
+- Clear concept-work disclosure so demonstration imagery is never presented as real client work
+
 ## Data flow
 
 EmailJS has been removed completely. No EmailJS endpoint, service ID, template ID, public key, package, or legal-policy reference remains in the project.

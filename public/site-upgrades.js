@@ -49,6 +49,13 @@
     "Branding & Design": ["Brand strategy", "Naming and messaging", "Visual identity", "Packaging and collateral", "Design systems", "Launch support"]
   };
 
+  const SHOWCASE_ITEMS = [
+    { image:"/images/showcase-brand-identity.jpg", title:"Heritage Wellness Identity", category:"Branding & Packaging", copy:"A demonstration identity system blending Indian craft references with contemporary premium packaging.", link:"/services#branding-design" },
+    { image:"/images/showcase-social-campaign.jpg", title:"Festival Social System", category:"Social & Content", copy:"A platform-ready campaign concept spanning reels, editorial content, launch planning and community storytelling.", link:"/social-media-marketing" },
+    { image:"/images/showcase-web-experience.jpg", title:"Connected Commerce Dashboard", category:"Web & Analytics", copy:"A responsive digital-product concept connecting ecommerce experience, live reporting and performance intelligence.", link:"/website-development" },
+    { image:"/images/showcase-creator-production.jpg", title:"Creator Production Studio", category:"UGC & Influencer", copy:"A creator-led production workflow designed for authentic organic content and paid-media adaptation.", link:"/influencer-marketing" }
+  ];
+
   const SERVICE_URLS = {
     "Creative & Communication": "/services#creative-communication",
     "Search Engine Marketing": "/seo",
@@ -84,11 +91,31 @@
     return section;
   }
 
+  function buildShowcase() {
+    const section = document.createElement("section");
+    section.id = "creative-showcase";
+    section.className = "section ds-showcase-section";
+    section.innerHTML = `<div class="container-elite"><div class="section-heading"><span class="section-tag">Creative Showcase</span><h2>Ideas made visible.</h2><p>Original demonstration concepts showing how Prime Polo approaches brand systems, campaigns, digital products and creator production.</p></div><div class="ds-showcase-stage"><img alt="Prime Polo creative concept showcase"><div class="ds-showcase-overlay"><small></small><h3></h3><p></p><a>Explore capability →</a></div><button class="ds-showcase-prev" type="button" aria-label="Previous concept">←</button><button class="ds-showcase-next" type="button" aria-label="Next concept">→</button></div><div class="ds-showcase-thumbs"></div><p class="ds-concept-note">Concept work created for demonstration. No client relationship or campaign result is implied.</p></div>`;
+    const image=section.querySelector(".ds-showcase-stage>img"),title=section.querySelector("h3"),category=section.querySelector("small"),copy=section.querySelector(".ds-showcase-overlay p"),link=section.querySelector(".ds-showcase-overlay a"),thumbs=section.querySelector(".ds-showcase-thumbs");
+    let index=0;
+    const show=i=>{index=(i+SHOWCASE_ITEMS.length)%SHOWCASE_ITEMS.length;const item=SHOWCASE_ITEMS[index];image.src=item.image;image.alt=`${item.title} — Prime Polo concept work`;title.textContent=item.title;category.textContent=item.category;copy.textContent=item.copy;link.href=item.link;[...thumbs.children].forEach((b,n)=>b.classList.toggle("active",n===index));};
+    SHOWCASE_ITEMS.forEach((item,i)=>{const button=document.createElement("button");button.type="button";button.innerHTML=`<img src="${item.image}" alt=""><span>${item.category}</span>`;button.addEventListener("click",()=>show(i));thumbs.append(button)});
+    section.querySelector(".ds-showcase-prev").addEventListener("click",()=>show(index-1));section.querySelector(".ds-showcase-next").addEventListener("click",()=>show(index+1));show(0);return section;
+  }
+
   function upgrade() {
     const hero = document.querySelector(".hero-image");
     if (hero) {
       hero.src = "/images/hero-3d-growth.jpg";
       hero.alt = "Prime Polo 3D growth pathways and digital analytics city";
+    }
+
+    const marquee = document.querySelector(".marquee");
+    if (marquee && !document.querySelector(".ds-platform-section")) {
+      const platforms = document.createElement("section");
+      platforms.className = "ds-platform-section";
+      platforms.innerHTML = `<div class="container-elite"><div><small>CHANNELS & ECOSYSTEMS</small><strong>Built to work where your customers already are.</strong></div><div class="ds-platform-grid">${["Google Ads","Meta","Instagram","LinkedIn","YouTube","Shopify","WordPress","HubSpot","GA4"].map(name=>`<span>${name}</span>`).join("")}</div></div>`;
+      marquee.insertAdjacentElement("afterend",platforms);
     }
 
     const servicesContainer = document.querySelector(".services-section .container-elite");
@@ -139,6 +166,11 @@
         ]
       );
       main.insertBefore(influencer, servicesSection);
+    }
+
+    const industriesSection = document.querySelector(".industries");
+    if (main && industriesSection && !document.getElementById("creative-showcase")) {
+      main.insertBefore(buildShowcase(), industriesSection);
     }
 
     const resultsSection = document.querySelector(".results");
@@ -196,6 +228,22 @@
         ]
       );
       main.insertBefore(international, contactSection);
+    }
+
+    const whySection = document.querySelector(".why");
+    if (main && whySection && !document.querySelector(".ds-studio-journal")) {
+      const journal = document.createElement("section");
+      journal.className = "section ds-studio-journal";
+      journal.innerHTML = `<div class="container-elite"><div class="section-heading"><span class="section-tag">Inside the Studio</span><h2>Process, craft and practical thinking.</h2><p>A look at the disciplines behind stronger brand and growth work—from identity details to creator production and connected reporting.</p></div><div class="ds-journal-grid"><a href="/services#branding-design"><img src="/images/showcase-brand-identity.jpg" alt="Premium packaging and identity concept"><small>Brand craft</small><h3>Building identity systems that can scale</h3><p>How strategy, packaging and design rules turn a visual idea into a usable brand system.</p></a><a href="/influencer-marketing"><img src="/images/showcase-creator-production.jpg" alt="Creator production studio"><small>Creator production</small><h3>From creator brief to usable content</h3><p>Planning authentic content, approvals and usage rights before the camera starts rolling.</p></a><a href="/blog/paid-media-measurement"><img src="/images/showcase-web-experience.jpg" alt="Connected analytics dashboard concept"><small>Measurement</small><h3>Why connected reporting changes decisions</h3><p>Moving from platform metrics to a clearer view of customer acquisition and commercial performance.</p></a></div></div>`;
+      main.insertBefore(journal, whySection);
+    }
+
+    const faqSection = document.querySelector(".faq");
+    if (main && faqSection && !document.querySelector(".ds-audit-section")) {
+      const audit = document.createElement("section");
+      audit.className = "section ds-audit-section";
+      audit.innerHTML = `<div class="container-elite"><div class="ds-audit-shell"><div><span class="section-tag">Free Growth Audit</span><h2>Find the constraint before adding more activity.</h2><p>Share your website and primary objective. Prime Polo will review your positioning, acquisition journey, search visibility and conversion path, then outline the clearest next questions.</p><div class="ds-audit-points"><span>Message clarity</span><span>SEO & AEO signals</span><span>Paid-media readiness</span><span>Conversion friction</span></div></div><div class="ds-audit-actions"><a href="#contact">Request your audit →</a><a href="tel:${PHONE_E164}">Call ${PHONE_DISPLAY}</a></div></div></div>`;
+      main.insertBefore(audit, faqSection);
     }
 
     document.querySelectorAll("img").forEach((image) => {

@@ -1,15 +1,46 @@
-Prime Polo recovery build: 15.3-eduex-optional-labels
+Prime Polo recovery build: 16.0-expanded-editorial-showcase
 
-EduEx form clarity update:
-- Every non-mandatory question now displays “(Optional)” beside its label.
-- Mandatory questions retain the required asterisk.
-- Course-category selection remains collectively required.
+New homepage content:
 
-Optional labels added to:
-- Gender and preferred contact method
-- Board/university, stream, backlogs and gap years
-- Entrance examinations and achievements
-- Specialization and preferred locations
-- College type, hostel requirement and colleges already considered
+1. Channels & Ecosystems
+- Google Ads, Meta, Instagram, LinkedIn, YouTube
+- Shopify, WordPress, HubSpot and GA4
+- Presented as platforms Prime Polo can activate, not as clients
 
-No form fields, validation, database behavior or CRM functionality was otherwise changed.
+2. Interactive Creative Showcase
+- Four original demonstration concepts
+- Brand identity and premium packaging
+- Social campaign system
+- Connected web and analytics experience
+- Creator/UGC production studio
+- Previous/next controls and four clickable thumbnails
+- Capability links for every concept
+- Explicit concept-work disclaimer to avoid false client claims
+
+3. Inside the Studio
+- Brand-system process article card
+- Creator-production process card
+- Connected-measurement article card
+- Original generated visual content
+
+4. Free Growth Audit
+- Positioning and message review
+- SEO/AEO signal review
+- Paid-media readiness
+- Conversion-friction review
+- Contact and click-to-call actions
+
+New original image assets:
+- showcase-brand-identity.jpg
+- showcase-social-campaign.jpg
+- showcase-web-experience.jpg
+- showcase-creator-production.jpg
+
+Validation:
+- Desktop and mobile
+- All four new sections render
+- Showcase carousel controls work
+- Four thumbnails switch the stage content
+- No browser page errors
+
+All previous UI, SEO, EduEx, CRM, authentication, leads and chatbot functionality remains unchanged.
