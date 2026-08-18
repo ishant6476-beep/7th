@@ -1,46 +1,45 @@
-Prime Polo recovery build: 16.0-expanded-editorial-showcase
+Prime Polo recovery build: 18.0-admin-website-editor
 
-New homepage content:
+New /admin Website Editor:
 
-1. Channels & Ecosystems
-- Google Ads, Meta, Instagram, LinkedIn, YouTube
-- Shopify, WordPress, HubSpot and GA4
-- Presented as platforms Prime Polo can activate, not as clients
+Editable sections:
+- Homepage hero: overline, brand signal, three headline lines, kicker, description, CTAs and hero image
+- Homepage SEO title and meta description
+- Business details: general/support emails, phone, WhatsApp, address, hours, Instagram, LinkedIn and Maps URL
+- Founder/about heading, biography and role
+- Services: add, edit, reorder, hide, remove and change links
+- Creative showcase: add, edit, reorder, remove, image URL and capability link
+- FAQ: add, edit, reorder, hide and remove
+- Section visibility: Blog, capability results, showcase, working standards, growth audit and EduEx link
 
-2. Interactive Creative Showcase
-- Four original demonstration concepts
-- Brand identity and premium packaging
-- Social campaign system
-- Connected web and analytics experience
-- Creator/UGC production studio
-- Previous/next controls and four clickable thumbnails
-- Capability links for every concept
-- Explicit concept-work disclaimer to avoid false client claims
+Publishing workflow:
+- Save Draft
+- Preview Draft at /?cms_preview=1
+- Publish one section
+- Publish all drafts
+- Revision history
+- Administrator rollback to a prior revision
+- Public visitors see only published content
+- Staff can draft; only admin can publish or roll back
 
-3. Inside the Studio
-- Brand-system process article card
-- Creator-production process card
-- Connected-measurement article card
-- Original generated visual content
+Media Library:
+- Upload JPEG, PNG, WebP or GIF up to 5 MB
+- Supabase Storage site-media bucket
+- Alternative text and asset history
+- Copy public media URL into hero/showcase fields
+- Admin-only uploads
 
-4. Free Growth Audit
-- Positioning and message review
-- SEO/AEO signal review
-- Paid-media readiness
-- Conversion-friction review
-- Contact and click-to-call actions
+Database/API:
+- public.site_content
+- public.site_content_history
+- public.site_media_assets
+- /api/site-content
+- /api/site-media
+- SQL migration: supabase/site_cms.sql
 
-New original image assets:
-- showcase-brand-identity.jpg
-- showcase-social-campaign.jpg
-- showcase-web-experience.jpg
-- showcase-creator-production.jpg
-
-Validation:
-- Desktop and mobile
-- All four new sections render
-- Showcase carousel controls work
-- Four thumbnails switch the stage content
-- No browser page errors
-
-All previous UI, SEO, EduEx, CRM, authentication, leads and chatbot functionality remains unchanged.
+Safety:
+- No arbitrary HTML or JavaScript editor
+- Structured fields only
+- Server-side staff/admin role checks
+- Draft/published separation
+- Existing built-in content remains as fallback if CMS is unavailable

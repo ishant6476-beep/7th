@@ -27,6 +27,42 @@ This is a deployable recovery and full visual redesign of the Prime Polo website
 - Connected official LinkedIn: `https://www.linkedin.com/in/prime-polo-2b12853b6`
 - Service catalog expanded to Creative & Communication; Search Engine Marketing with SEO/AEO/GEO; full-funnel Digital Marketing; Website, Web App and Mobile App Development; Ad Management; UGC Content Creation; Social Media and Influencer Marketing; Online Reputation Management; Content and Video Production; Branding and Design; Performance Marketing; Lead Generation; Marketing Automation/CRM; and Analytics/Attribution
 
+## Configure the Admin Website Editor
+
+The `/admin` CRM includes a **Website Editor** tab with:
+
+- Hero text, buttons, image and homepage SEO fields
+- Business emails, phone, WhatsApp, address, hours, social links and map URL
+- Founder/about content
+- Add, remove, reorder, hide and edit services
+- Add, remove, reorder and edit showcase projects
+- Add, remove, reorder and edit FAQs
+- Section visibility controls
+- Draft saving, secure preview, per-section publishing and publish-all
+- Revision history and administrator rollback
+- Supabase Storage media library with image upload and copyable URLs
+
+Run this once in **Supabase → SQL Editor**:
+
+```text
+supabase/site_cms.sql
+```
+
+The editor uses the existing server-only variables:
+
+```env
+SUPABASE_URL=https://YOUR_PROJECT.supabase.co
+SUPABASE_SECRET_KEY=sb_secret_your_server_key
+```
+
+Staff can save drafts. Only users with `role = admin` in `staff_roles` can publish, roll back or upload media. Published content is delivered through `/api/site-content`; if the CMS is unavailable, the original built-in website content remains visible.
+
+## Client-readiness and credibility
+
+The homepage includes a pre-engagement standards section covering written scope, milestones, access, secure handling, reporting and accountability. A second **Before the Advance** section explains the objective, deliverables, timeline, commercial structure, access/ownership and review details a prospective client should receive before kickoff.
+
+Unverified performance statistics, fictional client names, fictional team members, testimonials and calculator benchmarks have been removed from the public presentation. Demonstration portfolio work is clearly labelled as concept work until verified client permission and evidence are available.
+
 ## Expanded editorial and portfolio sections
 
 The homepage includes additional original content inspired by modern agency publishing patterns without copying another company's claims or client list:
