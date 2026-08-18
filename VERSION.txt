@@ -1,45 +1,72 @@
-Prime Polo recovery build: 18.0-admin-website-editor
+Prime Polo recovery build: 19.0-full-structured-cms
 
-New /admin Website Editor:
+Full structured CMS expansion
 
-Editable sections:
-- Homepage hero: overline, brand signal, three headline lines, kicker, description, CTAs and hero image
-- Homepage SEO title and meta description
-- Business details: general/support emails, phone, WhatsApp, address, hours, Instagram, LinkedIn and Maps URL
-- Founder/about heading, biography and role
-- Services: add, edit, reorder, hide, remove and change links
-- Creative showcase: add, edit, reorder, remove, image URL and capability link
-- FAQ: add, edit, reorder, hide and remove
-- Section visibility: Blog, capability results, showcase, working standards, growth audit and EduEx link
+Admin tabs:
+- Website Editor: hero, business details, about, services, showcase, FAQ, visibility, media and revisions
+- Pages & Settings: navigation, theme, extended homepage, pages, blog, EduEx and chatbot knowledge
 
-Publishing workflow:
-- Save Draft
-- Preview Draft at /?cms_preview=1
-- Publish one section
-- Publish all drafts
-- Revision history
-- Administrator rollback to a prior revision
-- Public visitors see only published content
-- Staff can draft; only admin can publish or roll back
+Navigation Manager:
+- Add, remove, hide and reorder navigation links
+- Custom label and destination
+- Published navigation is applied to desktop and mobile menus
 
-Media Library:
-- Upload JPEG, PNG, WebP or GIF up to 5 MB
-- Supabase Storage site-media bucket
-- Alternative text and asset history
-- Copy public media URL into hero/showcase fields
-- Admin-only uploads
+Safe Theme Settings:
+- Accent color
+- Dark background and card colors
+- Light background
+- Card radius
+- Theme toggle remains functional
+- No arbitrary CSS or JavaScript injection
 
-Database/API:
-- public.site_content
-- public.site_content_history
-- public.site_media_assets
-- /api/site-content
-- /api/site-media
-- SQL migration: supabase/site_cms.sql
+Dynamic Page Manager:
+- Create unlimited structured pages
+- Clean URL: /pages/{slug}
+- Draft and published content
+- SEO title, meta description and Open Graph image
+- Hero, text, image/text, card, gallery, video, CTA and FAQ blocks
+- Server-rendered HTML, canonical metadata and WebPage schema
 
-Safety:
-- No arbitrary HTML or JavaScript editor
-- Structured fields only
-- Server-side staff/admin role checks
-- Draft/published separation
-- Existing built-in content remains as fallback if CMS is unavailable
+Dynamic Blog Manager:
+- Create and publish articles
+- Clean URL: /articles/{slug}
+- Excerpt, SEO and social image
+- Same structured content blocks
+- Server-rendered Article schema
+
+Dynamic sitemap:
+- /sitemap.xml now merges built-in pages with all CMS-published pages and articles
+- CMS pages become indexable without a Vercel redeployment
+
+EduEx Manager:
+- Page title, introduction and hero tag
+- Dedicated call and WhatsApp numbers
+- Add/remove course categories
+- Show/hide optional questions
+- Mandatory contact and academic validation remains protected
+
+Chatbot Knowledge Manager:
+- Administrator-approved business summary
+- Tone and target answer length
+- Custom question/answer knowledge
+- Groq/Gemini system prompt automatically includes published CMS knowledge
+
+Database additions:
+- public.cms_pages
+- public.cms_page_history
+- Existing site_content, history and media tables remain
+
+API additions:
+- /api/cms-pages
+- /api/cms-render
+- /api/cms-sitemap
+
+Security:
+- Structured values only
+- Server-side staff/admin checks
+- Only administrators publish/archive
+- Public visitors receive published content only
+- Service-role key remains server-side
+
+Upgrade requirement:
+Run the latest supabase/site_cms.sql again, confirm Vercel server variables, and redeploy.

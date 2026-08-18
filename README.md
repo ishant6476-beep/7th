@@ -57,6 +57,25 @@ SUPABASE_SECRET_KEY=sb_secret_your_server_key
 
 Staff can save drafts. Only users with `role = admin` in `staff_roles` can publish, roll back or upload media. Published content is delivered through `/api/site-content`; if the CMS is unavailable, the original built-in website content remains visible.
 
+## Full CMS: Pages, Blog, Navigation and Settings
+
+The `/admin` CRM also includes **Pages & Settings**:
+
+- Navigation manager: add, remove, reorder and hide links
+- Safe theme settings: accent color, dark/light backgrounds, card color and radius
+- Extended homepage settings for platforms, influencer, international and audit headings
+- Dynamic page manager at `/pages/{slug}`
+- Dynamic blog manager at `/articles/{slug}`
+- Structured blocks: hero, text, image/text, cards, gallery, video, CTA and FAQ
+- Per-page title, excerpt, SEO title, description and Open Graph image
+- Draft, publish and archive workflow
+- Server-rendered metadata and JSON-LD for dynamic pages/articles
+- Dynamic XML sitemap merging built-in and CMS-published URLs
+- EduEx title, intro, phone, WhatsApp, course categories and optional-field visibility
+- Chatbot business summary, tone, answer length and approved Q&A knowledge
+
+Re-run the latest `supabase/site_cms.sql` when upgrading from Version 18 so the `cms_pages` and `cms_page_history` tables are added.
+
 ## Client-readiness and credibility
 
 The homepage includes a pre-engagement standards section covering written scope, milestones, access, secure handling, reporting and accountability. A second **Before the Advance** section explains the objective, deliverables, timeline, commercial structure, access/ownership and review details a prospective client should receive before kickoff.

@@ -79,7 +79,24 @@ function ensureUseful(reply, message) {
   return text.slice(0, 3000);
 }
 
-async function askGroq(message, history, signal) {
+async function loadCmsKnowledge() {
+  const url = String(process.env.SUPABASE_URL || "").replace(/\/$/, "");
+  const key = process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!url || !key) return "";
+  const headers = { apikey: key };
+  if (!String(key).startsWith("sb_secret_")) headers.Authorization = `Bearer ${key}`;
+  try {
+    const response = await fetch(`${url}/rest/v1/site_content?content_key=eq.global.chatbot&select=published_content,published_at&published_at=not.is.null&limit=1`, { headers });
+    if (!response.ok) return "";
+    const rows = await response.json();
+    const data = rows?.[0]?.published_content;
+    if (!data) return "";
+    const faq = Array.isArray(data.custom_faq) ? data.custom_faq.slice(0, 30).map(item => `Question: ${String(item.question || "").slice(0, 300)}\nApproved answer: ${String(item.answer || "").slice(0, 1500)}`).join("\n\n") : "";
+    return `\n\nAdditional administrator-approved knowledge:\nBusiness summary: ${String(data.business_summary || "").slice(0, 3000)}\nPreferred tone: ${String(data.tone || "").slice(0, 300)}\nTarget maximum answer length: ${Number(data.max_words) || 150} words.\n${faq}`;
+  } catch { return ""; }
+}
+
+async function askGroq(message, history, signal, systemPrompt = SYSTEM_PROMPT) {
   const key = process.env.GROQ_API_KEY;
   if (!key) return null;
   const model = process.env.GROQ_MODEL || "llama-3.3-70b-versatile";
@@ -89,7 +106,7 @@ async function askGroq(message, history, signal) {
     headers: { "Content-Type": "application/json", Authorization: `Bearer ${key}` },
     body: JSON.stringify({
       model,
-      messages: [{ role: "system", content: SYSTEM_PROMPT }, ...history, { role: "user", content: message }],
+      messages: [{ role: "system", content: systemPrompt }, ...history, { role: "user", content: message }],
       temperature: 0.45,
       max_completion_tokens: 500,
     }),
@@ -99,7 +116,7 @@ async function askGroq(message, history, signal) {
   return data?.choices?.[0]?.message?.content;
 }
 
-async function askGemini(message, history, signal) {
+async function askGemini(message, history, signal, systemPrompt = SYSTEM_PROMPT) {
   const key = process.env.GEMINI_API_KEY;
   if (!key) return null;
   const model = process.env.GEMINI_MODEL || "gemini-3.5-flash";
@@ -109,7 +126,7 @@ async function askGemini(message, history, signal) {
     signal,
     headers: { "Content-Type": "application/json", "x-goog-api-key": key },
     body: JSON.stringify({
-      systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] },
+      systemInstruction: { parts: [{ text: systemPrompt }] },
       contents,
       generationConfig: { temperature: 0.45, maxOutputTokens: 500 },
     }),
@@ -134,6 +151,7 @@ export default async function handler(req, res) {
   if (!message) return res.status(400).json({ error: "Please enter a message." });
   const history = historyItems(req.body?.history);
 
+  const effectivePrompt = SYSTEM_PROMPT + await loadCmsKnowledge();
   const providers = [];
   if (process.env.GROQ_API_KEY) providers.push(["groq", askGroq]);
   if (process.env.GEMINI_API_KEY) providers.push(["gemini", askGemini]);
@@ -142,7 +160,7 @@ export default async function handler(req, res) {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 20_000);
     try {
-      const reply = await provider(message, history, controller.signal);
+      const reply = await provider(message, history, controller.signal, effectivePrompt);
       if (reply) return res.status(200).json({ reply: ensureUseful(reply, message), mode: name });
     } catch (error) {
       console.error(`${name} chatbot failure`, error?.message || error);

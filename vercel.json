@@ -4,6 +4,7 @@
   "outputDirectory": "dist",
   "trailingSlash": false,
   "rewrites": [
+    { "source": "/sitemap.xml", "destination": "/api/cms-sitemap" },
     { "source": "/services", "destination": "/services/index.html" },
     { "source": "/seo", "destination": "/seo/index.html" },
     { "source": "/influencer-marketing", "destination": "/influencer-marketing/index.html" },
@@ -12,6 +13,8 @@
     { "source": "/website-development", "destination": "/website-development/index.html" },
     { "source": "/blog", "destination": "/blog/index.html" },
     { "source": "/eduex", "destination": "/eduex/index.html" },
+    { "source": "/pages/:slug", "destination": "/api/cms-render?type=page&slug=:slug" },
+    { "source": "/articles/:slug", "destination": "/api/cms-render?type=blog&slug=:slug" },
     { "source": "/blog/seo-aeo-geo-2026", "destination": "/blog/seo-aeo-geo-2026/index.html" },
     { "source": "/blog/better-influencer-brief", "destination": "/blog/better-influencer-brief/index.html" },
     { "source": "/blog/paid-media-measurement", "destination": "/blog/paid-media-measurement/index.html" },

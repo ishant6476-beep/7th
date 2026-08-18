@@ -15,7 +15,7 @@ export default async function handler(req,res){
     }
     const member=await staff(req,url,key);if(!member)return res.status(401).json({error:"Staff authorization required."});const headers=serverHeaders(key);
     if(req.method==="PUT"){
-      const contentKey=clean(req.body?.content_key,100);if(!/^(homepage|global)\.[a-z0-9_.-]+$/i.test(contentKey))return res.status(400).json({error:"Invalid content key."});const content=safeJson(req.body?.content);if(!content||typeof content!=="object")return res.status(400).json({error:"Invalid content."});
+      const contentKey=clean(req.body?.content_key,100);if(!/^(homepage|global|eduex)\.[a-z0-9_.-]+$/i.test(contentKey))return res.status(400).json({error:"Invalid content key."});const content=safeJson(req.body?.content);if(!content||typeof content!=="object")return res.status(400).json({error:"Invalid content."});
       const record={content_key:contentKey,draft_content:content,updated_by:member.user.id,updated_at:new Date().toISOString()};const up=await fetch(`${url}/rest/v1/site_content?on_conflict=content_key`,{method:"POST",headers:{...headers,Prefer:"resolution=merge-duplicates,return=representation"},body:JSON.stringify(record)});const data=await up.json().catch(()=>null);if(!up.ok)return res.status(502).json({error:"Could not save draft. Run supabase/site_cms.sql."});const row=data?.[0];if(row)await fetch(`${url}/rest/v1/site_content_history`,{method:"POST",headers,body:JSON.stringify({content_id:row.id,content_key:contentKey,content,action:"draft_saved",changed_by:member.user.id})});return res.status(200).json({section:row});
     }
     const action=clean(req.body?.action,40);

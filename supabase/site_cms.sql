@@ -39,13 +39,50 @@ create table if not exists public.site_media_assets (
 
 create index if not exists site_content_key_idx on public.site_content(content_key);
 create index if not exists site_content_history_key_idx on public.site_content_history(content_key,created_at desc);
+create table if not exists public.cms_pages (
+  id uuid primary key default gen_random_uuid(),
+  page_type text not null default 'page' check (page_type in ('page','blog')),
+  slug text not null,
+  title text not null,
+  excerpt text,
+  draft_blocks jsonb not null default '[]'::jsonb,
+  published_blocks jsonb not null default '[]'::jsonb,
+  seo_title text,
+  seo_description text,
+  og_image text,
+  status text not null default 'draft' check (status in ('draft','published','archived')),
+  created_by uuid references auth.users(id) on delete set null,
+  updated_by uuid references auth.users(id) on delete set null,
+  published_by uuid references auth.users(id) on delete set null,
+  published_at timestamptz,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now(),
+  unique(page_type,slug)
+);
+
+create table if not exists public.cms_page_history (
+  id uuid primary key default gen_random_uuid(),
+  page_id uuid not null references public.cms_pages(id) on delete cascade,
+  title text not null,
+  blocks jsonb not null,
+  seo jsonb not null default '{}'::jsonb,
+  action text not null,
+  changed_by uuid references auth.users(id) on delete set null,
+  created_at timestamptz not null default now()
+);
+
 create index if not exists site_media_created_idx on public.site_media_assets(created_at desc);
+create index if not exists cms_pages_type_status_idx on public.cms_pages(page_type,status,published_at desc);
+create index if not exists cms_pages_slug_idx on public.cms_pages(slug);
+create index if not exists cms_page_history_idx on public.cms_page_history(page_id,created_at desc);
 
 alter table public.site_content enable row level security;
 alter table public.site_content_history enable row level security;
 alter table public.site_media_assets enable row level security;
-revoke all on public.site_content,public.site_content_history,public.site_media_assets from anon,authenticated;
-grant all on public.site_content,public.site_content_history,public.site_media_assets to service_role;
+alter table public.cms_pages enable row level security;
+alter table public.cms_page_history enable row level security;
+revoke all on public.site_content,public.site_content_history,public.site_media_assets,public.cms_pages,public.cms_page_history from anon,authenticated;
+grant all on public.site_content,public.site_content_history,public.site_media_assets,public.cms_pages,public.cms_page_history to service_role;
 
 -- Public media bucket. Writes happen only through the authenticated server API.
 insert into storage.buckets (id,name,public,file_size_limit,allowed_mime_types)
@@ -57,5 +94,7 @@ returns trigger language plpgsql security invoker set search_path=public as $$
 begin new.updated_at=now();return new;end;$$;
 drop trigger if exists site_content_updated_at on public.site_content;
 create trigger site_content_updated_at before update on public.site_content for each row execute function public.set_site_content_updated_at();
+drop trigger if exists cms_pages_updated_at on public.cms_pages;
+create trigger cms_pages_updated_at before update on public.cms_pages for each row execute function public.set_site_content_updated_at();
 
 notify pgrst,'reload schema';
